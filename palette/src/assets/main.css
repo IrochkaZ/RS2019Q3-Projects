@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+ul,
+button {
+    list-style: none;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.541327);
+}
+
+.wrapper {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+ul:nth-child(1) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.size__button:hover,
+li:hover {
+    background-color: #ebe9e4;
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.tools {
+    margin-bottom: 92px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
+}
+
+.header {
+    align-items: center;
+    display: flex;
+    padding: 14px 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+i.fas.fa-bars {
+    font-size: 30px;
+}
+
+.logo {
+    margin-right: 36px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.instruments {
+    margin-left: 25px;
+    width: 15%;
+}
+
+.color {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
+}
+
+li {
+    display: flex;
+    padding: 12px 30px;
+    justify-content: flex-start;
+}
+
+ul>li>img,
+ul>li>div {
+    margin-right: 35px;
+}
+
+.shape {
+    margin-left: 1075px;
+}
+
+.color__circle {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.size {
+    margin-right: 25px;
+    display: flex;
+    width: 15%;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.541327);
+    height: fit-content;
+}
+
+.size__button {
+    background-color: #ffffff;
+    padding: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+#draw {
+    margin: 15px;
+    cursor: pointer;
+}
+
+#draw:hover {
+    color: black;
+    opacity: 0.6;
+}
+
+.main {
+    padding-top: 75px;
+}
+
+#canvas {
+    background-color: #8f8b8b;
+}
+
+.current-circle {
+    background-color: #c4c4c4;
+}
+
+.prev-circle {
+    background-color: #41F795;
+}
+
+.show-circle {
+    background-color: #F74141;
+}
+
+.show__prev-circle {
+    background-color: #41B6F7;
+}
