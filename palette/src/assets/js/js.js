@@ -66,12 +66,63 @@ const pencilDrawing = (canvasItem, ctxItem) => {
   canvasItem.addEventListener('mousemove', pencilDraw);
 };
 
+const getColorPicker = (canvasItem, ctxItem, obj) => {
+  const colorContainer = document.querySelector('.color__show');
+
+  const changeColor = (predefinedColor = null) => {
+    const colorState = obj.colors;
+    const currColor = document.querySelector('.color__current > span');
+    const prevColor = document.querySelector('.color__prev > span');
+    const tempColor = colorState.current;
+    if (predefinedColor) {
+      colorState.current = predefinedColor;
+      colorState.prev = tempColor;
+    } else {
+      colorState.current = colorState.prev;
+      colorState.prev = tempColor;
+    }
+    currColor.style.background = colorState.current;
+    prevColor.style.background = colorState.prev;
+  };
+
+  const colorChangeFromColorBar = (event) => {
+    const eventChangeColor = event.target;
+    if (eventChangeColor.classList.contains('color__current') || eventChangeColor.classList.contains('color__prev')) {
+      changeColor();
+    }
+
+    if (eventChangeColor.classList.contains('color__show-current') || eventChangeColor.classList.contains('color__show-prev')) {
+      changeColor(eventChangeColor.getAttribute('data-color'));
+    }
+  };
+
+  const colorPickFromCanvas = (e) => {
+    const { picker } = state.tools;
+    const x = e.offsetX;
+    const y = e.offsetY;
+
+    const rgbToHex = (r, g, b) => [r, g, b].map((ex) => {
+      const hex = ex.toString(16);
+      return hex.length === 1 ? `0${hex}` : hex;
+    }).join('');
+
+    if (picker === true) {
+      const rgba = ctxItem.getImageData(x, y, 1, 1).data;
+      changeColor(`#${rgbToHex(...rgba)}`);
+    }
+  };
+
+  colorContainer.addEventListener('click', colorChangeFromColorBar);
+  canvasItem.addEventListener('click', colorPickFromCanvas);
+};
+
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   getSizes(canvas, size4x4, state);
   drawCanvas(size4x4, canvas, ctx);
   pencilDrawing(canvas, ctx);
+  getColorPicker(canvas, ctx, state);
 };
 
 init();
