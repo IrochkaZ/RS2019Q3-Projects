@@ -71,8 +71,8 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 
   const changeColor = (predefinedColor = null) => {
     const colorState = obj.colors;
-    const currentColor = document.querySelector('.color__current > span');
-    const prevColor = document.querySelector('.color__prev > span');
+    const currentColor = document.querySelector('.color__current > .current-circle');
+    const prevColor = document.querySelector('.color__prev > .prev-circle');
     const tempColor = colorState.current;
     if (predefinedColor) {
       colorState.current = predefinedColor;
