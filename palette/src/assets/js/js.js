@@ -71,7 +71,7 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 
   const changeColor = (predefinedColor = null) => {
     const colorState = obj.colors;
-    const currColor = document.querySelector('.color__current > span');
+    const currentColor = document.querySelector('.color__current > span');
     const prevColor = document.querySelector('.color__prev > span');
     const tempColor = colorState.current;
     if (predefinedColor) {
@@ -81,7 +81,7 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
       colorState.current = colorState.prev;
       colorState.prev = tempColor;
     }
-    currColor.style.background = colorState.current;
+    currentColor.style.background = colorState.current;
     prevColor.style.background = colorState.prev;
   };
 
@@ -106,7 +106,7 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
       return hex.length === 1 ? `0${hex}` : hex;
     }).join('');
 
-    if (picker === true) {
+    if (picker) {
       const rgba = ctxItem.getImageData(x, y, 1, 1).data;
       changeColor(`#${rgbToHex(...rgba)}`);
     }
@@ -151,6 +151,21 @@ const chooseToolBar = (obj) => {
   buttons.addEventListener('click', toolChoose);
 };
 
+const colorFill = (ctxItem, canvasItem, obj) => {
+  const fillRect = () => {
+    const { bucket } = obj.tools;
+    if (bucket) {
+      const context = ctxItem;
+      const { width, height } = obj.canvasSize;
+      const { current: currentColor } = obj.colors;
+      context.fillStyle = currentColor;
+      context.fillRect(0, 0, width, height);
+    }
+  };
+
+  canvasItem.addEventListener('click', fillRect);
+};
+
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -159,6 +174,7 @@ const init = () => {
   pencilDrawing(canvas, ctx);
   getColorPicker(canvas, ctx, state);
   chooseToolBar(state);
+  colorFill(ctx, canvas, state);
 };
 
 init();
