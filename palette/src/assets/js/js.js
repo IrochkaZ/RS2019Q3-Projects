@@ -116,6 +116,41 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
   canvasItem.addEventListener('click', colorPickFromCanvas);
 };
 
+const chooseToolBar = (obj) => {
+  const buttons = document.querySelector('.tools');
+
+  const toolChoose = (e) => {
+    const toolbar = obj.tools;
+
+    [].forEach.call(buttons.children, (button) => {
+      button.classList.remove('active');
+    });
+
+    if (e.target.getAttribute('data-tool') === 'pencil') {
+      toolbar.pencil = true;
+      toolbar.bucket = false;
+      toolbar.picker = false;
+      e.target.classList.add('active');
+    }
+
+    if (e.target.getAttribute('data-tool') === 'bucket') {
+      toolbar.pencil = false;
+      toolbar.bucket = true;
+      toolbar.picker = false;
+      e.target.classList.add('active');
+    }
+
+    if (e.target.getAttribute('data-tool') === 'picker') {
+      toolbar.pencil = false;
+      toolbar.bucket = false;
+      toolbar.picker = true;
+      e.target.classList.add('active');
+    }
+  };
+
+  buttons.addEventListener('click', toolChoose);
+};
+
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -123,6 +158,7 @@ const init = () => {
   drawCanvas(size4x4, canvas, ctx);
   pencilDrawing(canvas, ctx);
   getColorPicker(canvas, ctx, state);
+  chooseToolBar(state);
 };
 
 init();
