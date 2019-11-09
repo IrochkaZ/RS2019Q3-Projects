@@ -46,11 +46,32 @@ const drawCanvas = (array, canvasItem, ctxItem) => {
   });
 };
 
+const pencilDrawing = (canvasItem, ctxItem) => {
+  const context = ctxItem;
+  const pencilDraw = (e) => {
+    const { pencil } = state.tools;
+    const { width, height } = state.blockSize;
+    const { current: color } = state.colors;
+    const x = e.offsetX;
+    const y = e.offsetY;
+
+    if (e.buttons > 0 && pencil) {
+      const stepX = Math.floor(x / width);
+      const stepY = Math.floor(y / height);
+      context.fillStyle = color;
+      state.matrix[stepX][stepY] = color.slice(1, color.length).toUpperCase();
+      context.fillRect(stepX * width, stepY * height, stepX + width, stepY + height);
+    }
+  };
+  canvasItem.addEventListener('mousemove', pencilDraw);
+};
+
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   getSizes(canvas, size4x4, state);
   drawCanvas(size4x4, canvas, ctx);
+  pencilDrawing(canvas, ctx);
 };
 
 init();
