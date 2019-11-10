@@ -36,11 +36,7 @@ const drawCanvas = (array, canvasItem, ctxItem) => {
   const context = ctxItem;
   array.forEach((row, rowIndex) => {
     row.forEach((col, colIndex) => {
-      if (isArray(col)) {
-        context.fillStyle = `rgba(${col[0]}, ${col[1]}, ${col[2]}, ${col[3]})`;
-      } else {
-        context.fillStyle = `#${col}`;
-      }
+      context.fillStyle = (isArray(col)) ? `rgba(${col[0]}, ${col[1]}, ${col[2]}, ${col[3]})` : `#${col}`;
       context.fillRect(colIndex * scale, rowIndex * scale, scale, scale);
     });
   });
@@ -67,7 +63,8 @@ const pencilDrawing = (canvasItem, ctxItem) => {
 };
 
 const getColorPicker = (canvasItem, ctxItem, obj) => {
-  const colorContainer = document.querySelector('.color__show');
+  const colorContainer = document.querySelector('.color');
+
 
   const changeColor = (predefinedColor = null) => {
     const colorState = obj.colors;
@@ -89,10 +86,14 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
     const eventChangeColor = event.target;
     if (eventChangeColor.classList.contains('color__current') || eventChangeColor.classList.contains('color__prev')) {
       changeColor();
+      global.console.log(event.target);
+      global.console.log('currprev');
     }
 
-    if (eventChangeColor.classList.contains('color__show-current') || eventChangeColor.classList.contains('color__show-prev')) {
+    if (eventChangeColor.classList.contains('predefined__red') || eventChangeColor.classList.contains('predefined__blue')) {
       changeColor(eventChangeColor.getAttribute('data-color'));
+      global.console.log(event.target);
+      global.console.log('predef');
     }
   };
 
@@ -112,7 +113,7 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
     }
   };
 
-  colorContainer.addEventListener('click', colorChangeFromColorBar);
+  colorContainer.addEventListener('click', colorChangeFromColorBar, true);
   canvasItem.addEventListener('click', colorPickFromCanvas);
 };
 
@@ -121,30 +122,31 @@ const chooseToolBar = (obj) => {
 
   const toolChoose = (e) => {
     const toolbar = obj.tools;
+    const toolEvent = e.target;
 
     [].forEach.call(buttons.children, (button) => {
       button.classList.remove('active');
     });
 
-    if (e.target.getAttribute('data-tool') === 'pencil') {
+    if (toolEvent.getAttribute('data-tool') === 'pencil') {
       toolbar.pencil = true;
       toolbar.bucket = false;
       toolbar.picker = false;
-      e.target.classList.add('active');
+      toolEvent.classList.add('active');
     }
 
-    if (e.target.getAttribute('data-tool') === 'bucket') {
+    if (toolEvent.getAttribute('data-tool') === 'bucket') {
       toolbar.pencil = false;
       toolbar.bucket = true;
       toolbar.picker = false;
-      e.target.classList.add('active');
+      toolEvent.classList.add('active');
     }
 
-    if (e.target.getAttribute('data-tool') === 'picker') {
+    if (toolEvent.getAttribute('data-tool') === 'picker') {
       toolbar.pencil = false;
       toolbar.bucket = false;
       toolbar.picker = true;
-      e.target.classList.add('active');
+      toolEvent.classList.add('active');
     }
   };
 
