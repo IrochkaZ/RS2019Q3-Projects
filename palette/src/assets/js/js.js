@@ -125,7 +125,7 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 };
 
 const chooseToolBar = (obj) => {
-  const buttons = document.querySelector('.tools');
+  const buttons = document.querySelector('.tools__color');
 
   const toolChoose = (e) => {
     const toolbar = obj.tools;
@@ -175,7 +175,6 @@ const colorFill = (ctxItem, canvasItem, obj) => {
   canvasItem.addEventListener('click', fillRect);
 };
 
-
 const LocalStorageData = (canvasItem, ctxItem) => {
   if (localStorage.getItem('matrix')) {
     const matrix = JSON.parse(localStorage.getItem('matrix'));
@@ -193,6 +192,39 @@ const LocalStorageData = (canvasItem, ctxItem) => {
   window.addEventListener('unload', saveData);
 };
 
+const hotKeys = (obj) => {
+  const buttons = document.querySelector('.tools__color');
+
+  const toolKeyPress = (e) => {
+    const toolbar = obj.tools;
+
+    [].forEach.call(buttons.children, (button) => {
+      button.classList.remove('active');
+    });
+    if (e.code === 'KeyB') {
+      toolbar.pencil = false;
+      toolbar.bucket = true;
+      toolbar.picker = false;
+      document.querySelector('li[data-tool="bucket"]').classList.add('active');
+    }
+
+    if (e.code === 'KeyP') {
+      toolbar.pencil = true;
+      toolbar.bucket = false;
+      toolbar.picker = false;
+      document.querySelector('li[data-tool="pencil"]').classList.add('active');
+    }
+
+    if (e.code === 'KeyC') {
+      toolbar.pencil = false;
+      toolbar.bucket = false;
+      toolbar.picker = true;
+      document.querySelector('li[data-tool="picker"]').classList.add('active');
+    }
+  };
+  window.addEventListener('keydown', toolKeyPress);
+};
+
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -202,6 +234,7 @@ const init = () => {
   getColorPicker(canvas, ctx, state);
   chooseToolBar(state);
   colorFill(ctx, canvas, state);
+  hotKeys(state);
 };
 
 init();

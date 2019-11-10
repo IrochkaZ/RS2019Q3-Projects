@@ -142,3 +142,7 @@ ul>li>div {
 .show__prev-circle {
     background-color: #41B6F7;
 }
+
+.active {
+    background: #ddd;
+}
