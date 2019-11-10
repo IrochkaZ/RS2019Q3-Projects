@@ -55,7 +55,7 @@ const pencilDrawing = (canvasItem, ctxItem) => {
       const stepX = Math.floor(x / width);
       const stepY = Math.floor(y / height);
       context.fillStyle = color;
-      state.matrix[stepX][stepY] = color.slice(1, color.length).toUpperCase();
+      state.matrix[stepY][stepX] = color.slice(1, color.length).toUpperCase();
       context.fillRect(stepX * width, stepY * height, stepX + width, stepY + height);
     }
   };
@@ -64,6 +64,7 @@ const pencilDrawing = (canvasItem, ctxItem) => {
 
 const getColorPicker = (canvasItem, ctxItem, obj) => {
   const colorContainer = document.querySelector('.color');
+  const colorInput = document.querySelector('input[type="color"]');
 
 
   const changeColor = (predefinedColor = null) => {
@@ -112,6 +113,12 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
       changeColor(`#${rgbToHex(...rgba)}`);
     }
   };
+
+  const changeColorInput = (event) => {
+    changeColor(event.target.value);
+  };
+
+  colorInput.addEventListener('change', changeColorInput);
 
   colorContainer.addEventListener('click', colorChangeFromColorBar, true);
   canvasItem.addEventListener('click', colorPickFromCanvas);
@@ -168,11 +175,29 @@ const colorFill = (ctxItem, canvasItem, obj) => {
   canvasItem.addEventListener('click', fillRect);
 };
 
+
+const LocalStorageData = (canvasItem, ctxItem) => {
+  if (localStorage.getItem('matrix')) {
+    const matrix = JSON.parse(localStorage.getItem('matrix'));
+    state.matrix = matrix;
+    drawCanvas(matrix, canvasItem, ctxItem);
+  } else {
+    drawCanvas(size4x4, canvasItem, ctxItem);
+  }
+
+  const saveData = () => {
+    const { matrix } = state;
+    localStorage.setItem('matrix', JSON.stringify(matrix));
+  };
+
+  window.addEventListener('unload', saveData);
+};
+
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   getSizes(canvas, size4x4, state);
-  drawCanvas(size4x4, canvas, ctx);
+  LocalStorageData(canvas, ctx);
   pencilDrawing(canvas, ctx);
   getColorPicker(canvas, ctx, state);
   chooseToolBar(state);
