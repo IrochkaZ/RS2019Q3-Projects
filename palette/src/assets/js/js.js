@@ -1,15 +1,8 @@
 import { isArray } from 'util';
 import state from './state';
 import size4x4 from './size4x4';
+import getSizes from './getSizes';
 import '../main.css';
-
-const getSizes = (cloth, array, obj) => {
-  const states = obj;
-  states.canvasSize.width = cloth.width;
-  states.canvasSize.height = cloth.height;
-  states.blockSize.width = cloth.width / array.length;
-  states.blockSize.height = cloth.height / array[0].length;
-};
 
 const drawCanvas = (array, canvasItem, ctxItem) => {
   const scale = canvasItem.width / array.length;
