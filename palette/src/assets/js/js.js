@@ -1,27 +1,7 @@
 import { isArray } from 'util';
+import state from './state';
 import size4x4 from './size4x4';
 import '../main.css';
-
-const state = {
-  tools: {
-    pencil: true,
-    bucket: false,
-    picker: false,
-  },
-  colors: {
-    current: '#c4c4c4',
-    prev: '#41f795',
-  },
-  canvasSize: {
-    width: 0,
-    height: 0,
-  },
-  blockSize: {
-    width: 0,
-    height: 0,
-  },
-  matrix: size4x4,
-};
 
 const getSizes = (cloth, array, obj) => {
   const states = obj;
@@ -85,16 +65,14 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 
   const colorChangeFromColorBar = (event) => {
     const eventChangeColor = event.target;
-    if (eventChangeColor.classList.contains('color__current') || eventChangeColor.classList.contains('color__prev')) {
+    if (eventChangeColor.closest('.color__current') || eventChangeColor.closest('.color__prev')) {
+      global.console.log(eventChangeColor);
       changeColor();
-      global.console.log(event.target);
-      global.console.log('currprev');
     }
 
-    if (eventChangeColor.classList.contains('predefined__red') || eventChangeColor.classList.contains('predefined__blue')) {
+    if (eventChangeColor.closest('.predefined__red') || eventChangeColor.closest('.predefined__blue')) {
+      global.console.log(eventChangeColor);
       changeColor(eventChangeColor.getAttribute('data-color'));
-      global.console.log(event.target);
-      global.console.log('predef');
     }
   };
 
@@ -120,7 +98,7 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 
   colorInput.addEventListener('change', changeColorInput);
 
-  colorContainer.addEventListener('click', colorChangeFromColorBar, true);
+  colorContainer.addEventListener('click', colorChangeFromColorBar);
   canvasItem.addEventListener('click', colorPickFromCanvas);
 };
 
@@ -132,6 +110,7 @@ const chooseToolBar = (obj) => {
     const toolEvent = e.target;
 
     [].forEach.call(buttons.children, (button) => {
+      global.console.log(buttons.children);
       button.classList.remove('active');
     });
 
