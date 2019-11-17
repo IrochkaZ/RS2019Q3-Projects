@@ -32,8 +32,9 @@ const getSizes = (cloth, array, obj) => {
   const states = obj;
   states.canvasSize.width = cloth.width;
   states.canvasSize.height = cloth.height;
-  states.blockSize.width = cloth.width / array.length;
-  states.blockSize.height = cloth.height / array[0].length;
+  states.blockSize.width = cloth.width / 128;
+  states.blockSize.height = cloth.height / 128;
+  global.console.log(cloth.width, cloth.height, states.blockSize.width, states.blockSize.height);
 };
 
 const drawCanvas = (array, canvasItem, ctxItem) => {
@@ -57,11 +58,10 @@ const pencilDrawing = (canvasItem, ctxItem) => {
     const y = e.offsetY;
 
     if (e.buttons > 0 && pencil) {
-      const stepX = Math.floor(x / width);
-      const stepY = Math.floor(y / height);
+      const stepX = Math.floor(x / width) * width;
+      const stepY = Math.floor(y / height) * height;
       context.fillStyle = color;
-      state.matrix[stepY][stepX] = color.slice(1, color.length).toUpperCase();
-      context.fillRect(stepX * width, stepY * height, stepX + width, stepY + height);
+      context.fillRect(stepX, stepY, width, height);
     }
   };
   canvasItem.addEventListener('mousemove', pencilDraw);
@@ -241,6 +241,24 @@ const getImgTown = async (town) => {
   return state.api.img.src;
 };
 
+const pxSizeChange = (obj) => {
+  const range = document.querySelector('#range');
+  const labelRange = document.querySelector('.px-size');
+
+  const changeBlockSize = (object, ev) => {
+    const st = object;
+    st.blockSize.width = st.canvasSize.width / ev.target.value;
+    st.blockSize.height = st.canvasSize.height / ev.target.value;
+  };
+
+  const rangeChangeListener = (event) => {
+    changeBlockSize(obj, event);
+    labelRange.innerText = event.target.value;
+    global.console.log(obj.blockSize);
+  };
+  range.addEventListener('change', rangeChangeListener);
+};
+
 getImgTown('Minsk');
 
 const init = () => {
@@ -253,6 +271,7 @@ const init = () => {
   chooseToolBar(state);
   colorFill(ctx, canvas, state);
   hotKeys(state);
+  pxSizeChange(state);
 };
 
 init();
