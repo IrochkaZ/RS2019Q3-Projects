@@ -21,6 +21,11 @@ const state = {
     height: 0,
   },
   matrix: size4x4,
+  api: {
+    url: 'https://api.unsplash.com/photos/random',
+    key: '4dc7bf52cd0116045a1668d9c6809696591d70a85a44b56b005d4326e3e7bbee',
+    img: new Image(),
+  },
 };
 
 const getSizes = (cloth, array, obj) => {
@@ -225,6 +230,19 @@ const hotKeys = (obj) => {
   window.addEventListener('keydown', toolKeyPress);
 };
 
+const getImgTown = async (town) => {
+  const { url, key } = state.api;
+  const query = `town, ${town}`;
+  const fullLink = `${url}?query=${query}&client_id=${key}`;
+
+  const response = await fetch(fullLink);
+  const data = await response.json();
+  state.api.img.src = data.urls.small;
+  return state.api.img.src;
+};
+
+getImgTown('Minsk');
+
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -238,5 +256,3 @@ const init = () => {
 };
 
 init();
-
-global.console.log(state.api);
