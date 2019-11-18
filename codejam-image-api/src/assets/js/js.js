@@ -1,6 +1,7 @@
 import { isArray } from 'util';
 import size4x4 from './size4x4';
 import '../main.css';
+// import rslogo from '../img/rs.png';
 
 const state = {
   tools: {
@@ -25,6 +26,7 @@ const state = {
     url: 'https://api.unsplash.com/photos/random',
     key: '4dc7bf52cd0116045a1668d9c6809696591d70a85a44b56b005d4326e3e7bbee',
     img: new Image(),
+    isSet: false,
   },
 };
 
@@ -34,7 +36,6 @@ const getSizes = (cloth, array, obj) => {
   states.canvasSize.height = cloth.height;
   states.blockSize.width = cloth.width / 128;
   states.blockSize.height = cloth.height / 128;
-  global.console.log(cloth.width, cloth.height, states.blockSize.width, states.blockSize.height);
 };
 
 const drawCanvas = (array, canvasItem, ctxItem) => {
@@ -92,14 +93,10 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
     const eventChangeColor = event.target;
     if (eventChangeColor.classList.contains('color__current') || eventChangeColor.classList.contains('color__prev')) {
       changeColor();
-      global.console.log(event.target);
-      global.console.log('currprev');
     }
 
     if (eventChangeColor.classList.contains('predefined__red') || eventChangeColor.classList.contains('predefined__blue')) {
       changeColor(eventChangeColor.getAttribute('data-color'));
-      global.console.log(event.target);
-      global.console.log('predef');
     }
   };
 
@@ -197,54 +194,79 @@ const LocalStorageData = (canvasItem, ctxItem) => {
   window.addEventListener('unload', saveData);
 };
 
-const hotKeys = (obj) => {
-  const buttons = document.querySelector('.tools__color');
 
-  const toolKeyPress = (e) => {
-    const toolbar = obj.tools;
-
-    [].forEach.call(buttons.children, (button) => {
-      button.classList.remove('active');
-    });
-    if (e.code === 'KeyB') {
-      toolbar.pencil = false;
-      toolbar.bucket = true;
-      toolbar.picker = false;
-      document.querySelector('li[data-tool="bucket"]').classList.add('active');
+const imageTownCityLoad = (newCtxItem) => {
+  const townInput = document.querySelector('.search__town');
+  const townLoadButton = document.querySelector('.town__load');
+  const imgToCanvas = (imgObject, obj, context) => {
+    const objImg = imgObject;
+    let zoomIndex = 0;
+    let stepDx = 0;
+    let stepDy = 0;
+    const canvasWidth = obj.canvasSize.width;
+    const canvasHeight = obj.canvasSize.height;
+    let pictWidth = objImg.width;
+    let pictHeight = objImg.height;
+    if (pictWidth > pictHeight && pictWidth < canvasWidth) {
+      zoomIndex = canvasWidth / pictWidth;
+      pictWidth *= zoomIndex;
+      pictHeight *= zoomIndex;
+      stepDx = 0;
+      stepDy = (canvasHeight - (pictHeight)) / 2;
+    } else if (pictHeight > pictWidth && pictHeight < canvasHeight) {
+      zoomIndex = canvasHeight / pictHeight;
+      global.console.log(`Zoomindex: ${zoomIndex}`);
+      pictWidth *= zoomIndex;
+      pictHeight *= zoomIndex;
+      stepDx = (canvasWidth - (pictWidth)) / 2;
+      stepDy = 0;
     }
 
-    if (e.code === 'KeyP') {
-      toolbar.pencil = true;
-      toolbar.bucket = false;
-      toolbar.picker = false;
-      document.querySelector('li[data-tool="pencil"]').classList.add('active');
-    }
-
-    if (e.code === 'KeyC') {
-      toolbar.pencil = false;
-      toolbar.bucket = false;
-      toolbar.picker = true;
-      document.querySelector('li[data-tool="picker"]').classList.add('active');
+    if (zoomIndex !== 0) {
+      global.console.log(pictHeight, pictWidth, stepDx, stepDy);
+      objImg.onload = () => {
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+        context.drawImage(objImg, stepDx, stepDy, pictWidth, pictHeight);
+      };
+      // ctx.drawImage(objImg, stepDx, stepDy, pictWidth, pictHeight);
+      // context.drawImage(objImg, stepDx, stepDy);
     }
   };
-  window.addEventListener('keydown', toolKeyPress);
-};
+  // const fn = d => d;
 
-const getImgTown = async (town) => {
-  const { url, key } = state.api;
-  const query = `town, ${town}`;
-  const fullLink = `${url}?query=${query}&client_id=${key}`;
+  const getImgTown = async (town, ctxItem) => {
+    const { url, key } = state.api;
+    const query = `town, ${town}`;
+    const fullLink = `${url}?query=${query}&client_id=${key}`;
 
-  const response = await fetch(fullLink);
-  const data = await response.json();
-  state.api.img.src = data.urls.small;
-  return state.api.img.src;
+    const response = await fetch(fullLink);
+    const data = await response.json();
+    const image = new Image();
+    image.src = `${data.urls.small}`;
+    const koeff = parseInt(data.width, 10) / 400;
+    image.width = 400;
+    image.height = (parseInt(data.height, 10) / koeff).toFixed(0);
+    imgToCanvas(image, state, ctxItem);
+    global.console.log(image);
+    setTimeout(() => {
+      global.console.dir(image.width);
+      imgToCanvas(image, state, ctxItem);
+    }, 10);
+  };
+
+  const townLoadButtonListener = (e) => {
+    e.preventDefault();
+    if (townInput.value) {
+      getImgTown(townInput.value, newCtxItem);
+    }
+  };
+
+  townLoadButton.addEventListener('click', townLoadButtonListener);
 };
 
 const pxSizeChange = (obj) => {
   const range = document.querySelector('#range');
   const labelRange = document.querySelector('.px-size');
-
   const changeBlockSize = (object, ev) => {
     const st = object;
     st.blockSize.width = st.canvasSize.width / ev.target.value;
@@ -256,10 +278,34 @@ const pxSizeChange = (obj) => {
     labelRange.innerText = event.target.value;
     global.console.log(obj.blockSize);
   };
+
   range.addEventListener('change', rangeChangeListener);
 };
 
-getImgTown('Minsk');
+/* const greyScale = (canvas, obj) => {
+  const buttonGrey = document.querySelector('.black_and_white');
+
+  const buttonGreyListener = (e) => {
+    e.preventDefault();
+
+  };
+
+  const toGrey = () => {
+    const { width, height } = obj.canvasSize;
+    const imageData = canvas.getImageData(0, 0, width, height);
+    const { data } = imageData;
+    const arraylength = width * height * 4;
+
+    for (let i = arraylength - 1; i > 0; i -= 4) {
+      const gray = 0.3 * data[i - 3] + 0.59 * data[i - 2] + 0.11 * data[i - 1];
+      data[i - 3] = gray;
+      data[i - 2] = gray;
+      data[i - 1] = gray;
+    }
+  };
+
+  buttonGrey.addEventListener('click', buttonGreyListener);
+}; */
 
 const init = () => {
   const canvas = document.getElementById('canvas');
@@ -270,8 +316,9 @@ const init = () => {
   getColorPicker(canvas, ctx, state);
   chooseToolBar(state);
   colorFill(ctx, canvas, state);
-  hotKeys(state);
   pxSizeChange(state);
+  imageTownCityLoad(ctx);
 };
 
 init();
+// global.console.log(state.api);
