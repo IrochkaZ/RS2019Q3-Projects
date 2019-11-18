@@ -1,4 +1,3 @@
-import { isArray } from 'util';
 import size4x4 from './size4x4';
 import '../main.css';
 // import rslogo from '../img/rs.png';
@@ -36,17 +35,6 @@ const getSizes = (cloth, array, obj) => {
   states.canvasSize.height = cloth.height;
   states.blockSize.width = cloth.width / 128;
   states.blockSize.height = cloth.height / 128;
-};
-
-const drawCanvas = (array, canvasItem, ctxItem) => {
-  const scale = canvasItem.width / array.length;
-  const context = ctxItem;
-  array.forEach((row, rowIndex) => {
-    row.forEach((col, colIndex) => {
-      context.fillStyle = (isArray(col)) ? `rgba(${col[0]}, ${col[1]}, ${col[2]}, ${col[3]})` : `#${col}`;
-      context.fillRect(colIndex * scale, rowIndex * scale, scale, scale);
-    });
-  });
 };
 
 const pencilDrawing = (canvasItem, ctxItem) => {
@@ -177,23 +165,24 @@ const colorFill = (ctxItem, canvasItem, obj) => {
   canvasItem.addEventListener('click', fillRect);
 };
 
-const LocalStorageData = (canvasItem, ctxItem) => {
-  if (localStorage.getItem('matrix')) {
-    const matrix = JSON.parse(localStorage.getItem('matrix'));
-    state.matrix = matrix;
-    drawCanvas(matrix, canvasItem, ctxItem);
-  } else {
-    drawCanvas(size4x4, canvasItem, ctxItem);
+const LocalStorageData = (canvasItem, ctxItem, obj) => {
+  const { width, height } = obj.canvasSize;
+  if (localStorage.getItem('image')) {
+    const img = new Image();
+    img.onload = () => {
+      ctxItem.clearRect(0, 0, width, height);
+      ctxItem.drawImage(img, 0, 0);
+    };
+    img.src = localStorage.getItem('image');
+    ctxItem.drawImage(img, 0, 0);
   }
 
   const saveData = () => {
-    const { matrix } = state;
-    localStorage.setItem('matrix', JSON.stringify(matrix));
+    localStorage.setItem('image', canvasItem.toDataURL());
   };
 
   window.addEventListener('unload', saveData);
 };
-
 
 const imageTownCityLoad = (newCtxItem) => {
   const townInput = document.querySelector('.search__town');
@@ -215,7 +204,6 @@ const imageTownCityLoad = (newCtxItem) => {
       stepDy = (canvasHeight - (pictHeight)) / 2;
     } else if (pictHeight > pictWidth && pictHeight < canvasHeight) {
       zoomIndex = canvasHeight / pictHeight;
-      global.console.log(`Zoomindex: ${zoomIndex}`);
       pictWidth *= zoomIndex;
       pictHeight *= zoomIndex;
       stepDx = (canvasWidth - (pictWidth)) / 2;
@@ -223,7 +211,6 @@ const imageTownCityLoad = (newCtxItem) => {
     }
 
     if (zoomIndex !== 0) {
-      global.console.log(pictHeight, pictWidth, stepDx, stepDy);
       objImg.onload = () => {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(objImg, stepDx, stepDy, pictWidth, pictHeight);
@@ -235,7 +222,6 @@ const imageTownCityLoad = (newCtxItem) => {
     const { url, key } = state.api;
     const query = `town, ${town}`;
     const fullLink = `${url}?query=${query}&client_id=${key}`;
-
     const response = await fetch(fullLink);
     const data = await response.json();
     const image = new Image();
@@ -244,9 +230,7 @@ const imageTownCityLoad = (newCtxItem) => {
     image.width = 400;
     image.height = (parseInt(data.height, 10) / koeff).toFixed(0);
     image.setAttribute('crossOrigin', '');
-    global.console.log(image);
     setTimeout(() => {
-      global.console.dir(image.width);
       imgToCanvas(image, state, ctxItem);
     }, 10);
   };
@@ -273,7 +257,6 @@ const pxSizeChange = (obj) => {
   const rangeChangeListener = (event) => {
     changeBlockSize(obj, event);
     labelRange.innerText = event.target.value;
-    global.console.log(obj.blockSize);
   };
 
   range.addEventListener('change', rangeChangeListener);
@@ -307,7 +290,7 @@ const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   getSizes(canvas, size4x4, state);
-  LocalStorageData(canvas, ctx);
+  LocalStorageData(canvas, ctx, state);
   pencilDrawing(canvas, ctx);
   getColorPicker(canvas, ctx, state);
   chooseToolBar(state);
@@ -318,4 +301,3 @@ const init = () => {
 };
 
 init();
-// global.console.log(state.api);
