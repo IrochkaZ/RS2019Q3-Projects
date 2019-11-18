@@ -1,6 +1,6 @@
-import size4x4 from './size4x4';
+
 import '../main.css';
-// import rslogo from '../img/rs.png';
+
 
 const state = {
   tools: {
@@ -20,7 +20,6 @@ const state = {
     width: 0,
     height: 0,
   },
-  matrix: size4x4,
   api: {
     url: 'https://api.unsplash.com/photos/random',
     key: '4dc7bf52cd0116045a1668d9c6809696591d70a85a44b56b005d4326e3e7bbee',
@@ -29,7 +28,7 @@ const state = {
   },
 };
 
-const getSizes = (cloth, array, obj) => {
+const getSizes = (cloth, obj) => {
   const states = obj;
   states.canvasSize.width = cloth.width;
   states.canvasSize.height = cloth.height;
@@ -226,9 +225,9 @@ const imageTownCityLoad = (newCtxItem) => {
     const data = await response.json();
     const image = new Image();
     image.src = `${data.urls.small}`;
-    const koeff = parseInt(data.width, 10) / 400;
+    const coefficient = parseInt(data.width, 10) / 400;
     image.width = 400;
-    image.height = (parseInt(data.height, 10) / koeff).toFixed(0);
+    image.height = (parseInt(data.height, 10) / coefficient).toFixed(0);
     image.setAttribute('crossOrigin', '');
     setTimeout(() => {
       imgToCanvas(image, state, ctxItem);
@@ -289,7 +288,7 @@ const greyScale = (canv, obj) => {
 const init = () => {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
-  getSizes(canvas, size4x4, state);
+  getSizes(canvas, state);
   LocalStorageData(canvas, ctx, state);
   pencilDrawing(canvas, ctx);
   getColorPicker(canvas, ctx, state);
