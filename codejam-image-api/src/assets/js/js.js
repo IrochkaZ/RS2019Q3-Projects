@@ -228,11 +228,8 @@ const imageTownCityLoad = (newCtxItem) => {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(objImg, stepDx, stepDy, pictWidth, pictHeight);
       };
-      // ctx.drawImage(objImg, stepDx, stepDy, pictWidth, pictHeight);
-      // context.drawImage(objImg, stepDx, stepDy);
     }
   };
-  // const fn = d => d;
 
   const getImgTown = async (town, ctxItem) => {
     const { url, key } = state.api;
@@ -246,7 +243,7 @@ const imageTownCityLoad = (newCtxItem) => {
     const koeff = parseInt(data.width, 10) / 400;
     image.width = 400;
     image.height = (parseInt(data.height, 10) / koeff).toFixed(0);
-    imgToCanvas(image, state, ctxItem);
+    image.setAttribute('crossOrigin', '');
     global.console.log(image);
     setTimeout(() => {
       global.console.dir(image.width);
@@ -282,17 +279,11 @@ const pxSizeChange = (obj) => {
   range.addEventListener('change', rangeChangeListener);
 };
 
-/* const greyScale = (canvas, obj) => {
+const greyScale = (canv, obj) => {
   const buttonGrey = document.querySelector('.black_and_white');
-
-  const buttonGreyListener = (e) => {
-    e.preventDefault();
-
-  };
-
   const toGrey = () => {
     const { width, height } = obj.canvasSize;
-    const imageData = canvas.getImageData(0, 0, width, height);
+    const imageData = canv.getImageData(0, 0, width, height);
     const { data } = imageData;
     const arraylength = width * height * 4;
 
@@ -302,10 +293,15 @@ const pxSizeChange = (obj) => {
       data[i - 2] = gray;
       data[i - 1] = gray;
     }
+    canv.putImageData(imageData, 0, 0);
   };
 
+  const buttonGreyListener = (e) => {
+    e.preventDefault();
+    toGrey();
+  };
   buttonGrey.addEventListener('click', buttonGreyListener);
-}; */
+};
 
 const init = () => {
   const canvas = document.getElementById('canvas');
@@ -318,6 +314,7 @@ const init = () => {
   colorFill(ctx, canvas, state);
   pxSizeChange(state);
   imageTownCityLoad(ctx);
+  greyScale(ctx, state);
 };
 
 init();
