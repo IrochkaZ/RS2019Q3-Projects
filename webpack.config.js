@@ -47,6 +47,6 @@ module.exports = {
     },
     filename: 'index.html',
     template: './codejam-image-api/src/index.html',
-    title: 'Codejam palette',
+    title: 'codejam-image-api',
   })],
 };
