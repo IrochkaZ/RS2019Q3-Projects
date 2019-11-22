@@ -15,6 +15,7 @@ const drawCanvas = (array, canvasItem, ctxItem) => {
   });
 };
 
+
 const pencilDrawing = (canvasItem, ctxItem) => {
   const context = ctxItem;
   const pencilDraw = ({ offsetX, offsetY, buttons }) => {
@@ -91,16 +92,11 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 
 const chooseToolBar = ({ tools }) => {
   const buttons = document.querySelector('.tools__color');
-  global.console.log(buttons.children);
 
   const toolChoose = ({ target }) => {
     const toolbar = tools;
-
-
-    [].forEach.call(buttons.children, (button) => {
-      global.console.log(buttons.children);
-      button.classList.remove('active');
-    });
+    const activeTool = Object.keys(state.tools)[Object.values(state.tools).indexOf(true)];
+    document.querySelector(`li[data-tool="${activeTool}"]`).classList.remove('active');
 
     if (target.getAttribute('data-tool') === 'pencil') {
       toolbar.pencil = true;
@@ -142,18 +138,29 @@ const colorFill = (ctxItem, canvasItem, { tools, canvasSize, colors }) => {
   canvasItem.addEventListener('click', fillRect);
 };
 
+const loadConfig = () => {
+  const { current, prev } = state.colors;
+  const activeTool = Object.keys(state.tools)[Object.values(state.tools).indexOf(true)];
+  document.querySelector(`li[data-tool="${activeTool}"]`).classList.add('active');
+  const currColor = document.querySelector('.color__current div');
+  const prevColor = document.querySelector('.color__prev div');
+  currColor.style.backgroundColor = current;
+  prevColor.style.backgroundColor = prev;
+};
+
 const LocalStorageData = (canvasItem, ctxItem) => {
-  if (localStorage.getItem('matrix')) {
-    const matrix = JSON.parse(localStorage.getItem('matrix'));
-    state.matrix = matrix;
-    drawCanvas(matrix, canvasItem, ctxItem);
-  } else {
-    drawCanvas(size4x4, canvasItem, ctxItem);
+  if (localStorage.getItem('cfg')) {
+    const cfg = JSON.parse(localStorage.getItem('cfg'));
+    state.tools = cfg.tools;
+    state.colors = cfg.colors;
+    state.matrix = cfg.matrix;
   }
 
+  const { matrix } = state;
+  loadConfig();
+  drawCanvas(matrix, canvasItem, ctxItem);
   const saveData = () => {
-    const { matrix } = state;
-    localStorage.setItem('matrix', JSON.stringify(matrix));
+    localStorage.setItem('cfg', JSON.stringify(state));
   };
 
   window.addEventListener('unload', saveData);
