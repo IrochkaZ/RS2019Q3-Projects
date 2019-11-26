@@ -1,10 +1,10 @@
 const pxSizeChange = (obj) => {
   const range = document.querySelector('#range');
   const labelRange = document.querySelector('.px-size');
-  const changeBlockSize = (object, ev) => {
+  const changeBlockSize = (object, { target }) => {
     const st = object;
-    st.blockSize.width = st.canvasSize.width / ev.target.value;
-    st.blockSize.height = st.canvasSize.height / ev.target.value;
+    st.blockSize.width = st.canvasSize.width / target.value;
+    st.blockSize.height = st.canvasSize.height / target.value;
   };
 
   const rangeChangeListener = (event) => {

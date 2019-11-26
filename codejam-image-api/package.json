@@ -2,12 +2,11 @@
   "name": "codejam-image-api",
   "version": "1.0.0",
   "description": "",
-  "main": ".codejam-image-api/src/assets/js/js.js",
+  "main": "src/assets/js/js.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --watch",
-    "build": "webpack --mode production",
-    "start": "node src/index.js",
-    "lint": "eslint src/ --fix"
+    "live-server": "webpack-dev-server --mode development --watch",
+    "start": "webpack --mode production",
+    "lint": "eslint src/assets/js/ --fix"
   },
   "author": "Irina Zaletko <zaletk.irina@gmail.com>",
   "license": "ISC",

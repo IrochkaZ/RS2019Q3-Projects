@@ -10,46 +10,39 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
     const currentColor = document.querySelector('.color__current > .current-circle');
     const prevColor = document.querySelector('.color__prev > .prev-circle');
     const tempColor = colorState.current;
-    if (predefinedColor) {
-      colorState.current = predefinedColor;
-      colorState.prev = tempColor;
-    } else {
-      colorState.current = colorState.prev;
-      colorState.prev = tempColor;
-    }
+    colorState.current = predefinedColor || colorState.prev;
+
+    colorState.prev = tempColor;
     currentColor.style.background = colorState.current;
     prevColor.style.background = colorState.prev;
   };
 
-  const colorChangeFromColorBar = (event) => {
-    const eventChangeColor = event.target;
-    if (eventChangeColor.classList.contains('color__current') || eventChangeColor.classList.contains('color__prev')) {
+  const colorChangeFromColorBar = ({ target }) => {
+    if (target.classList.contains('color__current') || target.classList.contains('color__prev')) {
       changeColor();
     }
 
-    if (eventChangeColor.classList.contains('predefined__red') || eventChangeColor.classList.contains('predefined__blue')) {
-      changeColor(eventChangeColor.getAttribute('data-color'));
+    if (target.classList.contains('predefined__red') || target.classList.contains('predefined__blue')) {
+      changeColor(target.getAttribute('data-color'));
     }
   };
 
-  const colorPickFromCanvas = (e) => {
+  const colorPickFromCanvas = ({ offsetX, offsetY }) => {
     const { picker } = state.tools;
-    const x = e.offsetX;
-    const y = e.offsetY;
 
-    const rgbToHex = (r, g, b) => [r, g, b].map((ex) => {
+    const rgbToHex = (...args) => args.map((ex) => {
       const hex = ex.toString(16);
       return hex.length === 1 ? `0${hex}` : hex;
     }).join('');
 
     if (picker) {
-      const rgba = ctxItem.getImageData(x, y, 1, 1).data;
+      const rgba = ctxItem.getImageData(offsetX, offsetY, 1, 1).data;
       changeColor(`#${rgbToHex(...rgba)}`);
     }
   };
 
-  const changeColorInput = (event) => {
-    changeColor(event.target.value);
+  const changeColorInput = ({ target }) => {
+    changeColor(target.value);
   };
 
   colorInput.addEventListener('change', changeColorInput);

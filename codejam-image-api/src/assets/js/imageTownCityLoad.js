@@ -26,12 +26,12 @@ const imageTownCityLoad = (newCtxItem) => {
       stepDy = 0;
     }
 
-    if (zoomIndex !== 0) {
-      objImg.onload = () => {
+    objImg.addEventListener('load', () => {
+      if (zoomIndex) {
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(objImg, stepDx, stepDy, pictWidth, pictHeight);
-      };
-    }
+      }
+    });
   };
 
   const getImgTown = async (town, ctxItem) => {
@@ -41,14 +41,12 @@ const imageTownCityLoad = (newCtxItem) => {
     const response = await fetch(fullLink);
     const data = await response.json();
     const image = new Image();
-    image.src = `${data.urls.small}`;
+    image.src = data.urls.small;
     const coefficient = parseInt(data.width, 10) / 400;
     image.width = 400;
     image.height = (parseInt(data.height, 10) / coefficient).toFixed(0);
     image.setAttribute('crossOrigin', '');
-    setTimeout(() => {
-      imgToCanvas(image, state, ctxItem);
-    }, 10);
+    image.addEventListener('load', imgToCanvas(image, state, ctxItem));
   };
 
   const townLoadButtonListener = (e) => {

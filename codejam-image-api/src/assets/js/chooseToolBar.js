@@ -1,13 +1,14 @@
+// import state from './state';
+
 const chooseToolBar = (obj) => {
   const buttons = document.querySelector('.tools__color');
 
-  const toolChoose = (e) => {
+  const toolChoose = ({ target }) => {
     const toolbar = obj.tools;
-    const toolEvent = e.target;
+    const toolEvent = target;
 
-    [].forEach.call(buttons.children, (button) => {
-      button.classList.remove('active');
-    });
+    const activeTool = Object.keys(obj.tools)[Object.values(obj.tools).indexOf(true)];
+    document.querySelector(`li[data-tool="${activeTool}"]`).classList.remove('active');
 
     if (toolEvent.getAttribute('data-tool') === 'pencil') {
       toolbar.pencil = true;

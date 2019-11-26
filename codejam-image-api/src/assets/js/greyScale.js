@@ -1,6 +1,6 @@
 const greyScale = (canv, obj) => {
   const buttonGrey = document.querySelector('.black_and_white');
-  const toGrey = () => {
+  const convertBlackAndWhite = () => {
     const { width, height } = obj.canvasSize;
     const imageData = canv.getImageData(0, 0, width, height);
     const { data } = imageData;
@@ -17,7 +17,7 @@ const greyScale = (canv, obj) => {
 
   const buttonGreyListener = (event) => {
     event.preventDefault();
-    toGrey();
+    convertBlackAndWhite();
   };
   buttonGrey.addEventListener('click', buttonGreyListener);
 };

@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './codejam-image-api/src/assets/js/js.js',
+  entry: './src/assets/js/js.js',
   output: {
     filename: 'app.bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -46,7 +46,7 @@ module.exports = {
       viewport: 'width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=0.85',
     },
     filename: 'index.html',
-    template: './codejam-image-api/src/index.html',
+    template: './src/index.html',
     title: 'codejam-image-api',
   })],
 };
