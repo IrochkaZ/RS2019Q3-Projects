@@ -22,6 +22,7 @@ const state = {
     img: new Image(),
     isSet: false,
   },
+  domToolActive: document.querySelector('.tools__color > .active'),
 };
 
 export default state;

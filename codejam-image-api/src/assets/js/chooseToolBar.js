@@ -1,20 +1,18 @@
-// import state from './state';
-
 const chooseToolBar = (obj) => {
   const buttons = document.querySelector('.tools__color');
 
-  const toolChoose = ({ target }) => {
-    const toolbar = obj.tools;
+  const toolChoose = ({ target, tools }) => {
+    const st = obj;
+    const toolbar = tools;
     const toolEvent = target;
-
-    const activeTool = Object.keys(obj.tools)[Object.values(obj.tools).indexOf(true)];
-    document.querySelector(`li[data-tool="${activeTool}"]`).classList.remove('active');
+    obj.classList.remove('active');
 
     if (toolEvent.getAttribute('data-tool') === 'pencil') {
       toolbar.pencil = true;
       toolbar.bucket = false;
       toolbar.picker = false;
       toolEvent.classList.add('active');
+      st.domToolActive = toolEvent;
     }
 
     if (toolEvent.getAttribute('data-tool') === 'bucket') {
@@ -22,6 +20,7 @@ const chooseToolBar = (obj) => {
       toolbar.bucket = true;
       toolbar.picker = false;
       toolEvent.classList.add('active');
+      st.domToolActive = toolEvent;
     }
 
     if (toolEvent.getAttribute('data-tool') === 'picker') {
@@ -29,10 +28,11 @@ const chooseToolBar = (obj) => {
       toolbar.bucket = false;
       toolbar.picker = true;
       toolEvent.classList.add('active');
+      st.domToolActive = toolEvent;
     }
   };
 
-  buttons.addEventListener('click', toolChoose);
+  buttons.addEventListener('click', toolChoose, true);
 };
 
 
