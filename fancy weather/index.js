@@ -1,7 +1,4 @@
-import "./src/css/style.css";
-var get = 13;
-const func =()=>{
-  return "worlddddddd";
-}
+import './src/css/style.css';
 
-console.log(func());
+const func = () => 'worlddddddd';
+global.console.log(func());
