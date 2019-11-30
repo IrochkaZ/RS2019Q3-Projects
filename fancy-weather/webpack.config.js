@@ -12,14 +12,12 @@ module.exports = {
   },
   module: {
     rules: [
+      { enforce: 'pre', test: /.js$/, loader: 'eslint-loader' },
       {
-        test: /\.(js)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
-      },
-      {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /.js$/,
+        exclude: [
+          /(node_modules)/,
+        ],
         use: {
           loader: 'babel-loader',
           options: {
@@ -49,6 +47,17 @@ module.exports = {
             outputPath: './assets/img/',
           },
         },
+      },
+      {
+        test: /.(woff|woff2|ttf|otf|eot)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'assets/fonts',
+            },
+          },
+        ],
       },
       {
         test: /\.(html)$/,
