@@ -1,5 +1,4 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -31,6 +30,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
           },
+
           {
             loader: 'css-loader',
             options: {
@@ -44,20 +44,18 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            outputPath: './assets/img/',
+            outputPath: 'assets/img/',
           },
         },
       },
       {
         test: /.(woff|woff2|ttf|otf|eot)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/fonts',
-            },
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'assets/fonts/',
           },
-        ],
+        }],
       },
       {
         test: /\.(html)$/,
@@ -71,14 +69,17 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Fancy Weather App',
       filename: 'index.html',
       template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: './src/style.css',
+      filename: './style.css',
+      hot: true,
+      orderWarning: true,
+      reloadAll: true,
+      cssModules: true,
     }),
   ],
 };
