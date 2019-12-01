@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
+    <title> Fancy Weather App</title>
 </head>
 
 <body>
@@ -28,6 +26,12 @@
                         <li class="button__fahrenheit">°F</li>
                         <li class="button__celcius button__temperature-active">°C</li>
                     </ul>
+                </li>
+                <li class="container-search mobile-container">
+                    <form class="search-form">
+                        <input type="text" class="city-input" placeholder="Search city or ZIP" accept="audio/*;capture=microphone" autofocus >
+                        <input type="submit" value="Search" class="submit">
+                    </form>
                 </li>
             </ul>
 
@@ -89,12 +93,12 @@
 
             <div class="map-responsive">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d143494.86491623629!2d38.8346975935457!3d55.80873818252006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414b1c7e8e89e903%3A0x2489581359276ac7!2z0J7RgNC10YXQvtCy0L4t0JfRg9C10LLQviwg0JzQvtGB0LrQvtCy0YHQutCw0Y8g0L7QsdC7Lg!5e0!3m2!1sru!2sru!4v1452761646368"
-                width="375" height="375" frameborder="0" style="border:0" allowfullscreen class="iframe"></iframe>
+           allowfullscreen class="iframe"></iframe>
             </div>
-<div class="coordinates">
-    <p class="latitude">Latitude: <span class="latitud-item">53°54'</span></p>
-    <p class="longitude">Longitude: <span class="latitud-item">27°34'</span></p>
-</div>
+            <div class="coordinates">
+                <p class="latitude">Latitude: <span class="latitud-item">53°54'</span></p>
+                <p class="longitude">Longitude: <span class="latitud-item">27°34'</span></p>
+            </div>
         </div>
     </div>
 </body>
