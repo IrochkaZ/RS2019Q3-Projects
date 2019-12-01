@@ -28,6 +28,7 @@
 .operations__button, .button-temperature {
     list-style: none;
     cursor: pointer;
+    margin: 0;
 }
 
 .reload {
@@ -172,7 +173,7 @@
 }
 
 .show__temperature {
-    font-size: 80px;
+    font-size: 60px;
     font-weight: bold;
 }
 
@@ -186,4 +187,61 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+
+
+.city-input{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 10px;
+    padding-right: 75px;
+    border: 1px solid #727880;
+    background: rgba(255,245,215,0.2);
+}
+
+::placeholder {
+    color: #ffffff;
+}
+
+.submit{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: -4px;
+    border:none;
+    padding: 11px;
+    cursor: pointer;
+    background: #858D96;
+    color: #FFFFFF;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.map-responsive{
+    margin-top: 110px;
+}
+
+.map-responsive .iframe{
+    border-radius: 20px;
+}
+
+.coordinates {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+.longitude {
+    margin: 0;
+}
+
 
