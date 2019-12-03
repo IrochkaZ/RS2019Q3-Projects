@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>React.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- sliders1 -->
+				<section>
+						<h1 class="" style ="color: aqua">React.js</h1>
+						<h3>fundamentals</h3>
+						<img width="768" height="355" src="./img/main.jpeg" alt="react">
+					<p>
+						<small>Links: <a href="https://reactjs.org/">https://reactjs.org/</a> and <a href="https://github.com/facebook/react">https://github.com/facebook/react</a></small>
+					</p>
+				</section>
+				<!-- slides2 -->
+				<section>
+					<section>
+					<img width="815" height="476" src="./img/What-is-Reactjs.png" style="border: none;" alt="react">
+					</section>
+						<section>
+							<h3>What is React.js?</h3>
+							<ul>
+								<li class="fragment fade-up">React is a JavaScript library for building user interfaces.</li>
+								<li class="fragment fade-right" >Renders your UI and responds to events</li>
+								<li class="fragment fade-left">It also uses the concept called Virtual DOM, creates an in-memory data structure cache, enumerates the resulting differences, and then updates the browser’s displayed DOM efficiently.</li>
+								<li class="fragment fade-down"> One of the unique features of React.js is not only it can perform on the client side, but it can also be rendered on the server side, and they can work together interoperably</li>
+							</ul>
+							</section>
+					</section>
+					<!-- slides3 -->
+					<section>
+							<section>
+								<h2 style="color: #4068A1">Why was React developed?</h2>
+								<img width="475" height="355" src="./img/react-js-1.png" alt="develop">
+							</section>
+					<section>
+						<h3>Why was React developed?</h3>
+							<ul>
+									<li class="fragment fade-up">Complexity of two-way data binding.</li>
+									<li class="fragment fade-right" >Bad UX from using "cascading updates" of DOM tree</li>
+									<li class="fragment fade-left">A lot of data on a page changing over time</li>
+									<li class="fragment fade-down" >Complexity of Facebook's UI architecture</li>
+							</ul>
+          </section>
+					</section>
+				<!-- slides4 -->
+					<section data-background="#dddddd">
+						<p><em>react is maintained by</em></p><a href="https://www.facebook.com/" target="_blank"><img src="./img/facebook.png" alt="facebook"></a>
+						<p>GitHub stats</p>
+					<a href="https://github.com/facebook/react" target="_blank"><img src="./img/react_git.png" alt="react_github" ></a>
+					<a href="https://github.com/vuejs/vue" target="_blank"><img src="./img/vue_git.png" alt="vue_git"></a>
+					</section>
+					<!-- slides5 -->
+					<section>
+						<h2>Who is using <span style="color: aqua">React</span>?</h2>
+						<p>Most Popular Websites world wide made with react</p>
+						<img width="auto" height="400" src="./img/who-use.jpg" alt="who_use" style="margin-bottom: 15px">
+					</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
