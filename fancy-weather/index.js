@@ -1,6 +1,10 @@
 import './src/css/style.css';
 import './src/assets/fonts/webfont-montserrat.css';
+import Wrapper from './src/js/components/toolbar';
 
-const hello = 'world';
+const { body } = document;
+body.innerHTML = '';
 
-global.console.log(hello);
+const wrap = new Wrapper();
+// body.append(wrap.render());
+global.console.log(wrap.render());
