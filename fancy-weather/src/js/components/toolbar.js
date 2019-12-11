@@ -1,6 +1,8 @@
+import { createEl } from './functions';
+
 export default class Toolbar {
   constructor() {
-    this.out = document.createElement('div');
+    this.out = createEl('div');
     this.lang = [
       {
         lang: 'en',
@@ -18,34 +20,17 @@ export default class Toolbar {
   }
 
   render() {
-    const toolContainer = document.createElement('ul');
-    toolContainer.classList.add('operations__button');
-    this.out.append(toolContainer);
+    const toolContainer = createEl('ul', 'operations__button', null, this.out);
 
     // reload option append
-    const liReload = document.createElement('li');
-    liReload.classList.add('reload');
-    toolContainer.append(liReload);
-    const iconReload = document.createElement('i');
-    iconReload.classList.add('fa', 'fa-fresh', 'fa-spin');
-    liReload.append(iconReload);
+    const liReload = createEl('li', 'reload', null, toolContainer);
+    createEl('i', ['fa', 'fa-fresh', 'fa-spin'], null, liReload);
 
     // language option append
-    const liLang = document.createElement('li');
-    liLang.classList.add('language');
-    toolContainer.append(liLang);
-
-    const langSelect = document.createElement('select');
-    langSelect.classList.add('language-select');
-    liLang.append(langSelect);
-
-    this.lang.forEach((lng) => {
-      const optLang = document.createElement('option');
-      optLang.classList.add(lng.cls);
-      optLang.innerText = lng.lang;
-      langSelect.append(optLang);
-    });
-
+    const liLang = createEl('li', 'language', null, toolContainer);
+    const langSelect = createEl('select', 'language-select', null, liLang);
+    this.lang.forEach((lng) => createEl('option', lng.cls, lng.lang, langSelect));
+    global.console.log(this.out);
     return this.out;
   }
 }
