@@ -1,36 +1,56 @@
 import { createEl } from './functions';
+import Search from './search';
 
 export default class Toolbar {
   constructor() {
-    this.out = createEl('div');
+    this.toolContainer = createEl('ul', 'operations__button', null, null);
+    this.search = new Search();
     this.lang = [
       {
-        lang: 'en',
+        lang: 'EN',
         cls: 'eng',
       },
       {
-        lang: 'ru',
+        lang: 'RU',
         cls: 'russ',
       },
       {
-        lang: 'be',
+        lang: 'BE',
         cls: 'be',
       },
+    ];
+    this.tempa = [{
+      tempa: '°F',
+      cls: 'button__fahrenheit',
+    },
+    {
+      tempa: '°C',
+      cls: 'button__celcius',
+    },
     ];
   }
 
   render() {
-    const toolContainer = createEl('ul', 'operations__button', null, this.out);
-
     // reload option append
-    const liReload = createEl('li', 'reload', null, toolContainer);
+    const liReload = createEl('li', 'reload', null, this.toolContainer);
     createEl('i', ['fa', 'fa-fresh', 'fa-spin'], null, liReload);
 
     // language option append
-    const liLang = createEl('li', 'language', null, toolContainer);
+    const liLang = createEl('li', 'language', null, this.toolContainer);
     const langSelect = createEl('select', 'language-select', null, liLang);
-    this.lang.forEach((lng) => createEl('option', lng.cls, lng.lang, langSelect));
-    global.console.log(this.out);
-    return this.out;
+    this.lang.forEach((lng) => {
+      createEl('option', lng.cls, lng.lang, langSelect);
+    });
+    // temperature select
+    const temperatureWrap = createEl('li', 'button__temperature-wrapper', null, this.toolContainer);
+    const scaleTemp = createEl('ul', 'button-temperature', null, temperatureWrap);
+    this.tempa.forEach((tmp) => {
+      createEl('li', tmp.cls, tmp.tempa, scaleTemp);
+    });
+
+    // container search
+    const searchContainer = createEl('li', ['container-search', 'mobile-container'], null, this.toolContainer);
+    searchContainer.append(this.search.render());
+    return this.toolContainer;
   }
 }
