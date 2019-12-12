@@ -33,7 +33,8 @@ export default class Toolbar {
   render() {
     // reload option append
     const liReload = createEl('li', 'reload', null, this.toolContainer);
-    createEl('i', ['fa', 'fa-fresh', 'fa-spin'], null, liReload);
+    const reloadI = createEl('i', ['fa', 'fa-refresh'], null, liReload);
+    reloadI.setAttribute('aria-hidden', 'true');
 
     // language option append
     const liLang = createEl('li', 'language', null, this.toolContainer);
