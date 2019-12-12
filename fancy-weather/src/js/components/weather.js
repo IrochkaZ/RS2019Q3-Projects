@@ -1,8 +1,9 @@
 import { createEl } from './functions';
-import weatherImg from '../../assets/img/animated/cloudy-day-3.svg';
 
 export default class Weather {
   constructor() {
+    this.date = new Date();
+    this.changeState = {};
     this.weatherContainer = createEl('div', 'weather__today', null, null);
   }
 
@@ -18,24 +19,36 @@ export default class Weather {
     const showData = createEl('div', 'show__data', null, this.weatherContainer);
     createEl('div', 'show__temperature-now', '-10°', showData);
     const description = createEl('div', 'description__weather', null, showData);
-    const imgWeather = createEl('img', 'weather__icon', null, description);
-    imgWeather.src = weatherImg;
+    createEl('img', 'weather__icon', null, description);
 
     const descriptionWeatherInfo = createEl('div', 'description__weather-info', null, description);
     createEl('div', 'summary', 'overcast', descriptionWeatherInfo);
 
     const feelsLike = createEl('div', 'apparent__temperature', null, descriptionWeatherInfo);
     createEl('span', 'description__weather-text', 'Feels like:', feelsLike);
-    createEl('span', 'description__weather-temperature', '7°', feelsLike);
+    createEl('span', 'description__weather-temperature', null, feelsLike);
 
     const wind = createEl('div', 'wind__speed', null, descriptionWeatherInfo);
     createEl('span', 'description__weather-text', 'Wind:', wind);
-    createEl('span', 'description__weather-wind', '2 m/s', wind);
+    createEl('span', 'description__weather-wind', 'null', wind);
 
     const humidity = createEl('div', 'humidity', null, descriptionWeatherInfo);
     createEl('span', 'description__weather-text', 'Humidity:', humidity);
-    createEl('span', 'description__weather-humidity', '83%', humidity);
+    createEl('span', 'description__weather-humidity', 'null', humidity);
 
     return this.weatherContainer;
+  }
+
+  change() {
+    this.weatherContainer.querySelector('.show__temperature-now').innerText = ` ${(parseInt(this.changeState.main.temp, 10) >= 273) ? (parseInt(this.changeState.main.temp, 10) - 273) : -(273 - parseInt(this.changeState.main.temp, 10))}°`;
+    this.weatherContainer.querySelector('.town').innerText = this.changeState.name;
+    this.weatherContainer.querySelector('.country').innerText = this.changeState.sys.country;
+    this.weatherContainer.querySelector('.today').innerText = this.date.toDateString();
+    this.weatherContainer.querySelector('.time').innerText = this.date.toLocaleTimeString();
+    this.weatherContainer.querySelector('.summary').innerText = this.changeState.weather[0].main;
+    this.weatherContainer.querySelector('.description__weather-temperature').innerText = ` ${(parseInt(this.changeState.main.feels_like, 10) >= 273) ? (parseInt(this.changeState.main.feels_like, 10) - 273) : -(273 - parseInt(this.changeState.main.feels_like, 10))}°`;
+    this.weatherContainer.querySelector('.description__weather-wind').innerText = ` ${this.changeState.wind.speed} m/s`;
+    this.weatherContainer.querySelector('.description__weather-humidity').innerText = ` ${this.changeState.main.humidity} %`;
+    this.weatherContainer.querySelector('.weather__icon').src = `http://openweathermap.org/img/wn/${this.changeState.weather[0].icon}@2x.png`;
   }
 }

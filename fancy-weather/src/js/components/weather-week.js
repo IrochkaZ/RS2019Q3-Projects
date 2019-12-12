@@ -1,13 +1,12 @@
 import { createEl } from './functions';
-import weatherImg from '../../assets/img/animated/rainy-1.svg';
 
 export default class WeatherWeek {
   constructor() {
     this.weatherWeekContainer = createEl('div', 'weather-three-day', null, null);
     this.data = [
-      { day: 'Tuesday', temp: '7°', icon: weatherImg },
-      { day: 'Wednesday', temp: '7°', icon: weatherImg },
-      { day: 'Wednesday', temp: '7°', icon: weatherImg },
+      { day: 'Tuesday', temp: '7°', icon: null },
+      { day: 'Wednesday', temp: '7°', icon: null },
+      { day: 'Wednesday', temp: '7°', icon: null },
     ];
   }
 
