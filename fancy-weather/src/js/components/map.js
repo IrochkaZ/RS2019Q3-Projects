@@ -28,6 +28,6 @@ export default class Map {
   change() {
     this.mapContainer.querySelector('.latitud-item').innerText = this.data.coord.lat;
     this.mapContainer.querySelector('.longitude-item').innerText = this.data.coord.lon;
-    global.console.log(this.data);
+    this.mapContainer.querySelector('iframe').src = `https://maps.google.com/maps/embed/v1/place?key=AIzaSyAWRS13kH7yjU7Qpbz9wk_PkFLs9m094xU&q=${this.data.coord.lat},${this.data.coord.lon}`;
   }
 }

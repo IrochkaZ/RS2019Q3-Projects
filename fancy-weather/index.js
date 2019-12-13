@@ -13,7 +13,7 @@ changeImageBackground('Minsk').then(
   },
 );
 
-getWeather('Minsk', 'city').then(
+getWeather('London', 'city').then(
   (data) => {
     wrap.weatherMain.changeState = data;
     wrap.map.data = data;
