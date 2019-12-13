@@ -1,4 +1,4 @@
-import { createEl } from './functions';
+import { createEl, changeImageBackground } from './functions';
 import Search from './search';
 
 export default class Toolbar {
@@ -53,5 +53,16 @@ export default class Toolbar {
     const searchContainer = createEl('li', ['container-search', 'mobile-container'], null, this.toolContainer);
     searchContainer.append(this.search.render());
     return this.toolContainer;
+  }
+
+  events(el) {
+    this.toolContainer.querySelector('.reload').addEventListener('click', () => {
+      const elem = el;
+      changeImageBackground('Minsk').then(
+        (data) => {
+          elem.style.backgroundImage = `url(${data.src})`;
+        },
+      );
+    });
   }
 }

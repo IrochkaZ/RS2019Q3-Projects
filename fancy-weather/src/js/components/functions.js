@@ -31,4 +31,15 @@ module.exports = {
     }
     return data;
   },
+
+  changeImageBackground: async (query) => {
+    const urlImage = 'https://api.unsplash.com/photos/random';
+    const key = 'bf0b1c1798a22465f9c79198b7c271894fccc257c52e80db9e2b515160a5e038';
+    const fullLink = `${urlImage}?query=${query}&client_id=${key}`;
+    const response = await fetch(fullLink);
+    const data = await response.json();
+    const image = new Image();
+    image.src = data.urls.full;
+    return image;
+  },
 };

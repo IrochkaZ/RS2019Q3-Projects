@@ -1,10 +1,17 @@
 import './src/css/style.css';
 import './src/assets/fonts/webfont-montserrat.css';
 import Wrapper from './src/js/components/wrapper';
-import { getWeather } from './src/js/components/functions';
+import { getWeather, changeImageBackground } from './src/js/components/functions';
 
 const wrap = new Wrapper();
-wrap.render();
+const wrapper = wrap.render();
+
+
+changeImageBackground('Minsk').then(
+  (data) => {
+    wrapper.style.backgroundImage = `url(${data.src})`;
+  },
+);
 
 getWeather('Minsk', 'city').then(
   (data) => {
@@ -12,6 +19,5 @@ getWeather('Minsk', 'city').then(
     wrap.map.data = data;
     wrap.weatherMain.change();
     wrap.map.change();
-    // global.console.log(data);
   },
 );
