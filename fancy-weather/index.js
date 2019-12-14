@@ -6,15 +6,15 @@ import { getWeather, changeImageBackground } from './src/js/components/functions
 const wrap = new Wrapper();
 const wrapper = wrap.render();
 
-
-changeImageBackground('Minsk').then(
+changeImageBackground('winter').then(
   (data) => {
     wrapper.style.backgroundImage = `url(${data.src})`;
   },
 );
 
-getWeather('London', 'city').then(
+getWeather('new york', 'city').then(
   (data) => {
+    global.console.log(data);
     wrap.weatherMain.changeState = data;
     wrap.map.data = data;
     wrap.weatherMain.change();

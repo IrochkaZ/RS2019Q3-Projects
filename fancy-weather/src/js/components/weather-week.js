@@ -3,6 +3,11 @@ import { createEl } from './functions';
 export default class WeatherWeek {
   constructor() {
     this.weatherWeekContainer = createEl('div', 'weather-three-day', null, null);
+    this.dayFull = {
+      en: ['Monday', 'Tuesday', 'Wendsday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      ru: ['Понедебник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+      be: ['Панядзелак', 'Ауторак', 'Серада', 'Чацверг', 'Пятнiца', 'Субота', 'Нядзеля'],
+    };
     this.data = [
       { day: 'Tuesday', temp: '7°', icon: null },
       { day: 'Wednesday', temp: '7°', icon: null },
