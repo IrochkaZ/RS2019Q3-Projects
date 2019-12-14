@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'production',
-  entry:['regenerator-runtime/runtime', './index.js'],
+  entry: ['regenerator-runtime/runtime', './index.js'],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),

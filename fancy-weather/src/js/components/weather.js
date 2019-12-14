@@ -66,7 +66,6 @@ export default class Weather {
     this.weatherContainer.querySelector('.town').innerText = this.changeState.name;
     this.weatherContainer.querySelector('.country').innerText = this.changeState.sys.country;
     this.weatherContainer.querySelector('.today').innerText = this.localDate(this.changeState.timezone, 'en');
-    // this.weatherContainer.querySelector('.time').innerText = this.date.toLocaleTimeString();
     this.weatherContainer.querySelector('.summary').innerText = this.changeState.weather[0].main;
     this.weatherContainer.querySelector('.description__weather-temperature').innerText = ` ${(parseInt(this.changeState.main.feels_like, 10) >= 273) ? (parseInt(this.changeState.main.feels_like, 10) - 273) : -(273 - parseInt(this.changeState.main.feels_like, 10))}°`;
     this.weatherContainer.querySelector('.description__weather-wind').innerText = ` ${this.changeState.wind.speed} m/s`;

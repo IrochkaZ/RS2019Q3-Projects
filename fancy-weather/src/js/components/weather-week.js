@@ -1,12 +1,13 @@
+/* eslint-disable dot-notation */
 import { createEl } from './functions';
 
 export default class WeatherWeek {
   constructor() {
     this.weatherWeekContainer = createEl('div', 'weather-three-day', null, null);
     this.dayFull = {
-      en: ['Monday', 'Tuesday', 'Wendsday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      ru: ['Понедебник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
-      be: ['Панядзелак', 'Ауторак', 'Серада', 'Чацверг', 'Пятнiца', 'Субота', 'Нядзеля'],
+      en: ['Sunday', 'Monday', 'Tuesday', 'Wendsday', 'Thursday', 'Friday', 'Saturday'],
+      ru: ['Воскресенье', 'Понедебник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+      be: ['Нядзеля', 'Панядзелак', 'Ауторак', 'Серада', 'Чацверг', 'Пятнiца', 'Субота'],
     };
     this.data = [
       { day: 'Tuesday', temp: '7°', icon: null },
@@ -15,14 +16,19 @@ export default class WeatherWeek {
     ];
   }
 
+  getLocaleDay(time) {
+    const date = new Date(time * 1000);
+    return this.dayFull['en'][date.getDay()];
+  }
+
   render() {
     this.data.forEach((item) => {
       const weatherDayItem = createEl('div', '', null, this.weatherWeekContainer);
-      createEl('div', 'day-text', item.day, weatherDayItem);
+      createEl('div', 'day-text', this.getLocaleDay(item.day), weatherDayItem);
       const weatherDayInfo = createEl('div', 'weather-day__info', null, weatherDayItem);
-      createEl('div', 'show__temperature', item.temp, weatherDayInfo);
+      createEl('div', 'show__temperature', `${item.temp}°`, weatherDayInfo);
       const imgWeather = createEl('img', 'weather-three-day__icon', null, weatherDayInfo);
-      imgWeather.src = item.icon;
+      imgWeather.src = `http://openweathermap.org/img/wn/${item.icon}@2x.png`;
     });
 
     return this.weatherWeekContainer;
