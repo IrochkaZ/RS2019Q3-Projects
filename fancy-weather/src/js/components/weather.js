@@ -19,8 +19,8 @@ export default class Weather {
 
   render() {
     const countryInfo = createEl('div', 'country__info', null, this.weatherContainer);
-    createEl('div', 'town', 'Minsk,', countryInfo);
-    createEl('div', 'country', 'Belarus', countryInfo);
+    createEl('div', 'town', null, countryInfo);
+    createEl('div', 'country', null, countryInfo);
 
     const dateCont = createEl('div', 'date', null, this.weatherContainer);
     createEl('div', 'today', 'Today day', dateCont);
@@ -48,7 +48,6 @@ export default class Weather {
     return this.weatherContainer;
   }
 
-
   localDate(tz, lng) {
     const d = this.date;
     let unixDate = Math.round(d.getTime() / 1000);
@@ -67,7 +66,7 @@ export default class Weather {
     this.weatherContainer.querySelector('.country').innerText = this.changeState.sys.country;
     this.weatherContainer.querySelector('.today').innerText = this.localDate(this.changeState.timezone, 'en');
     this.weatherContainer.querySelector('.summary').innerText = this.changeState.weather[0].main;
-    this.weatherContainer.querySelector('.description__weather-temperature').innerText = ` ${(parseInt(this.changeState.main.feels_like, 10) >= 273) ? (parseInt(this.changeState.main.feels_like, 10) - 273) : -(273 - parseInt(this.changeState.main.feels_like, 10))}°`;
+    this.weatherContainer.querySelector('.description__weather-temperature').innerText = ` ${(parseInt(this.changeState.main.feels_like, 10) >= 273) ? (parseInt(this.changeState.main.feels_like, 10) - 273) : -(273 - parseInt(this.changeState.main.feels_like, 10))} °`;
     this.weatherContainer.querySelector('.description__weather-wind').innerText = ` ${this.changeState.wind.speed} m/s`;
     this.weatherContainer.querySelector('.description__weather-humidity').innerText = ` ${this.changeState.main.humidity} %`;
     this.weatherContainer.querySelector('.weather__icon').src = `http://openweathermap.org/img/wn/${this.changeState.weather[0].icon}@2x.png`;

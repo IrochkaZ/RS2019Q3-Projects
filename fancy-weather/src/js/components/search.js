@@ -2,6 +2,7 @@ import { createEl } from './functions';
 
 export default class Search {
   constructor() {
+    this.query = '';
     this.searchForm = createEl('form', 'search-form', null, null);
   }
 

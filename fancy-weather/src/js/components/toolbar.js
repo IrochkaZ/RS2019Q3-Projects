@@ -58,7 +58,7 @@ export default class Toolbar {
   events(el) {
     this.toolContainer.querySelector('.reload').addEventListener('click', () => {
       const elem = el;
-      changeImageBackground('Minsk').then(
+      changeImageBackground(el).then(
         (data) => {
           elem.style.backgroundImage = `url(${data.src})`;
         },

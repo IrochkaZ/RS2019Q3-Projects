@@ -65,4 +65,16 @@ module.exports = {
     image.src = data.urls.full;
     return image;
   },
+
+  getLocation: async () => {
+    const url = 'https://freegeoip.app/json/';
+    let location = '';
+    try {
+      const response = await fetch(url);
+      location = await response.json();
+    } catch (e) {
+      global.alert(e);
+    }
+    return location;
+  },
 };
