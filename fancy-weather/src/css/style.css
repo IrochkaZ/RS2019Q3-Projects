@@ -208,12 +208,12 @@
 
 
 .city-input{
+    font-size: 18px;
     border-top-left-radius: 0.3125rem;
     border-bottom-left-radius: 0.3125rem;
     padding: 0.625rem;
     padding-right: 4.6875rem;
     border: 0.0625rem solid #727880;
-    background: rgba(255,245,215,0.2);
 }
 
 ::placeholder {

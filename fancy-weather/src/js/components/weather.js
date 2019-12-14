@@ -6,9 +6,9 @@ export default class Weather {
     this.changeState = {};
     this.weatherContainer = createEl('div', 'weather__today', null, null);
     this.dayShort = {
-      en: ['Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat', 'Sun'],
-      ru: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-      be: ['Пан', 'Аут', 'Сер', 'Чац', 'Пят', 'Суб', 'Няд'],
+      en: ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat'],
+      ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      be: ['Няд', 'Пан', 'Аут', 'Сер', 'Чац', 'Пят', 'Суб'],
     };
     this.monthFull = {
       en: ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -53,10 +53,11 @@ export default class Weather {
     let unixDate = Math.round(d.getTime() / 1000);
     unixDate += tz;
     const d2 = new Date(unixDate * 1000);
-    const dayWeek = this.dayShort[lng][d2.getDay() - 1];
-    const dayMonth = d2.getDate();
+    const dayWeek = this.dayShort[lng][d2.getUTCDay()];
+    global.console.log(d2.getDay());
+    const dayMonth = d2.getUTCDate();
     const month = this.monthFull[lng][d2.getMonth()];
-    const time = `${d2.getUTCHours()}:${d2.getUTCMinutes()}`;
+    const time = `${d2.getUTCHours()}:${d2.getMinutes()}`;
     return `${dayWeek} ${dayMonth} ${month} ${time}`;
   }
 

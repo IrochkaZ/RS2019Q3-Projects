@@ -16,9 +16,9 @@ getLocation().then(
     } else {
       query = dataLocation.region_name;
     }
-    global.console.log(dataLocation);
     getWeather(query, 'city').then(
       (data) => {
+        global.console.log(data);
         getWeatherWeek(data.id).then((dataWeek) => {
           wrap.weatherWeek.data = dataWeek;
           const wrapper = wrap.render();
@@ -39,13 +39,22 @@ getLocation().then(
 
 wrap.search.searchForm.addEventListener('click', (e) => {
   e.preventDefault();
+  global.console.dir(wrap.search.searchForm);
   if (e.target.classList.contains('submit')) {
-    const inputValue = document.querySelector('.city-input').value;
-    if (inputValue !== '') {
-      global.console.log('weather async func should be here');
+    if (wrap.search.searchForm[0].value !== '') {
+      getWeather(wrap.search.searchForm[0].value, 'city').then(
+        (data) => {
+          getWeatherWeek(data.id).then((dataWeek) => {
+            wrap.weatherWeek.data = dataWeek;
+            wrap.weatherMain.changeState = data;
+            wrap.map.data = data;
+            wrap.weatherMain.change();
+            wrap.map.change();
+          });
+        },
+      );
     } else {
       global.alert('Please input city to check weather');
     }
   }
-  global.console.log('submitted');
 });

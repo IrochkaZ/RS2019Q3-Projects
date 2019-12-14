@@ -10,8 +10,9 @@ export default class Search {
     const cityInput = createEl('input', 'city-input', null, this.searchForm);
     cityInput.setAttribute('type', 'text');
     cityInput.placeholder = 'Search city or ZIP';
-    cityInput.accept = 'audio/*;capture=microphone';
-    cityInput.autofocus = true;
+    cityInput.name = 'search';
+    // cityInput.accept = 'audio/*;capture=microphone';
+    // cityInput.autofocus = true;
 
     const citySubmit = createEl('input', 'submit', null, this.searchForm);
     citySubmit.setAttribute('type', 'submit');

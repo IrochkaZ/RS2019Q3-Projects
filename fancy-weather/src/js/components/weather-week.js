@@ -18,7 +18,7 @@ export default class WeatherWeek {
 
   getLocaleDay(time) {
     const date = new Date(time * 1000);
-    return this.dayFull['en'][date.getDay()];
+    return this.dayFull['en'][date.getUTCDay()];
   }
 
   render() {
