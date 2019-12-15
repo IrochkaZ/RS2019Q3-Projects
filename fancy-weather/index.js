@@ -44,12 +44,15 @@ wrap.search.searchForm.addEventListener('click', (e) => {
     if (wrap.search.searchForm[0].value !== '') {
       getWeather(wrap.search.searchForm[0].value, 'city').then(
         (data) => {
+          global.console.log(data);
           getWeatherWeek(data.id).then((dataWeek) => {
-            wrap.weatherWeek.data = dataWeek;
+            global.console.log(dataWeek);
+            wrap.weatherWeek.state = dataWeek;
             wrap.weatherMain.changeState = data;
             wrap.map.data = data;
             wrap.weatherMain.change();
             wrap.map.change();
+            wrap.weatherWeek.change();
           });
         },
       );

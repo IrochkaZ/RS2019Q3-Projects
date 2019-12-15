@@ -13,7 +13,7 @@ export default class Weather {
     this.monthFull = {
       en: ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       ru: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
-      be: ['Студзеня', 'Лютага', 'Сакавiка', 'Красавiка', 'Мая', 'Чэрвеня', 'Лiпеня', 'Жнiуня', 'Верасня', 'Кастрычнiка', 'Лшстапада', 'Снежня'],
+      be: ['Студзеня', 'Лютага', 'Сакавiка', 'Красавiка', 'Мая', 'Чэрвеня', 'Лiпеня', 'Жнiуня', 'Верасня', 'Кастрычнiка', 'Лiстапада', 'Снежня'],
     };
   }
 
@@ -23,15 +23,15 @@ export default class Weather {
     createEl('div', 'country', null, countryInfo);
 
     const dateCont = createEl('div', 'date', null, this.weatherContainer);
-    createEl('div', 'today', 'Today day', dateCont);
+    createEl('div', 'today', null, dateCont);
 
     const showData = createEl('div', 'show__data', null, this.weatherContainer);
-    createEl('div', 'show__temperature-now', '-10°', showData);
+    createEl('div', 'show__temperature-now', null, showData);
     const description = createEl('div', 'description__weather', null, showData);
     createEl('img', 'weather__icon', null, description);
 
     const descriptionWeatherInfo = createEl('div', 'description__weather-info', null, description);
-    createEl('div', 'summary', 'overcast', descriptionWeatherInfo);
+    createEl('div', 'summary', null, descriptionWeatherInfo);
 
     const feelsLike = createEl('div', 'apparent__temperature', null, descriptionWeatherInfo);
     createEl('span', 'description__weather-text', 'Feels like:', feelsLike);
@@ -39,11 +39,11 @@ export default class Weather {
 
     const wind = createEl('div', 'wind__speed', null, descriptionWeatherInfo);
     createEl('span', 'description__weather-text', 'Wind:', wind);
-    createEl('span', 'description__weather-wind', 'null', wind);
+    createEl('span', 'description__weather-wind', null, wind);
 
     const humidity = createEl('div', 'humidity', null, descriptionWeatherInfo);
     createEl('span', 'description__weather-text', 'Humidity:', humidity);
-    createEl('span', 'description__weather-humidity', 'null', humidity);
+    createEl('span', 'description__weather-humidity', null, humidity);
 
     return this.weatherContainer;
   }
@@ -54,7 +54,6 @@ export default class Weather {
     unixDate += tz;
     const d2 = new Date(unixDate * 1000);
     const dayWeek = this.dayShort[lng][d2.getUTCDay()];
-    global.console.log(d2.getDay());
     const dayMonth = d2.getUTCDate();
     const month = this.monthFull[lng][d2.getMonth()];
     const time = `${d2.getUTCHours()}:${d2.getMinutes()}`;

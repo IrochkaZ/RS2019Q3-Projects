@@ -3,6 +3,7 @@ import { createEl } from './functions';
 
 export default class WeatherWeek {
   constructor() {
+    this.state = {};
     this.weatherWeekContainer = createEl('div', 'weather-three-day', null, null);
     this.dayFull = {
       en: ['Sunday', 'Monday', 'Tuesday', 'Wendsday', 'Thursday', 'Friday', 'Saturday'],
@@ -30,7 +31,15 @@ export default class WeatherWeek {
       const imgWeather = createEl('img', 'weather-three-day__icon', null, weatherDayInfo);
       imgWeather.src = `http://openweathermap.org/img/wn/${item.icon}@2x.png`;
     });
-
     return this.weatherWeekContainer;
+  }
+
+  change() {
+    this.weatherWeekContainer.querySelectorAll('.show__temperature')[0].innerText = this.state[0].temp;
+    this.weatherWeekContainer.querySelectorAll('.show__temperature')[1].innerText = this.state[1].temp;
+    this.weatherWeekContainer.querySelectorAll('.show__temperature')[2].innerText = this.state[2].temp;
+    this.weatherWeekContainer.querySelectorAll('.weather-three-day__icon')[0].src = `http://openweathermap.org/img/wn/${this.state[0].icon}@2x.png`;
+    this.weatherWeekContainer.querySelectorAll('.weather-three-day__icon')[1].src = `http://openweathermap.org/img/wn/${this.state[1].icon}@2x.png`;
+    this.weatherWeekContainer.querySelectorAll('.weather-three-day__icon')[2].src = `http://openweathermap.org/img/wn/${this.state[2].icon}@2x.png`;
   }
 }
