@@ -77,4 +77,10 @@ module.exports = {
     }
     return location;
   },
+
+  // eslint-disable-next-line arrow-body-style
+  celciusTofahrenheit: (temp) => {
+    return Math.round((9 / 5) * temp + 32);
+  },
+
 };
