@@ -18,11 +18,10 @@ getLocation().then(
     }
     getWeather(query, 'city').then(
       (data) => {
-        global.console.log(data);
         getWeatherWeek(data.id).then((dataWeek) => {
           wrap.weatherWeek.data = dataWeek;
           const wrapper = wrap.render();
-          changeImageBackground('december').then(
+          changeImageBackground(data.weather[0].description).then(
             (dataImg) => {
               wrapper.style.backgroundImage = `url(${dataImg.src})`;
             },
@@ -39,14 +38,11 @@ getLocation().then(
 
 wrap.search.searchForm.addEventListener('click', (e) => {
   e.preventDefault();
-  global.console.dir(wrap.search.searchForm);
   if (e.target.classList.contains('submit')) {
     if (wrap.search.searchForm[0].value !== '') {
       getWeather(wrap.search.searchForm[0].value, 'city').then(
         (data) => {
-          global.console.log(data);
           getWeatherWeek(data.id).then((dataWeek) => {
-            global.console.log(dataWeek);
             wrap.weatherWeek.state = dataWeek;
             wrap.weatherMain.changeState = data;
             wrap.map.data = data;

@@ -9,9 +9,8 @@ export default class Search {
   render() {
     const cityInput = createEl('input', 'city-input', null, this.searchForm);
     cityInput.setAttribute('type', 'text');
-    cityInput.placeholder = 'Search city or ZIP';
+    cityInput.placeholder = 'Search city';
     cityInput.name = 'search';
-
 
     const citySubmit = createEl('input', 'submit', null, this.searchForm);
     citySubmit.setAttribute('type', 'submit');

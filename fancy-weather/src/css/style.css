@@ -9,6 +9,7 @@
 }
 
 .wrapper {
+    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
     font-family: Montserrat;
     align-items: center;
     height: 100vh;
@@ -19,7 +20,7 @@
     padding-top: 2.5rem;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: inset 0px 0px 277px 3px #4c3f37;
+    position: relative;
 }
 
 .mobile-container{
