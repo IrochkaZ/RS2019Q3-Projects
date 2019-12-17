@@ -73,6 +73,7 @@ module.exports = {
       title: 'Fancy Weather App',
       filename: 'index.html',
       template: './src/index.html',
+      favicon: './src/assets/img/favicon.ico',
     }),
     new MiniCssExtractPlugin({
       filename: './style.css',

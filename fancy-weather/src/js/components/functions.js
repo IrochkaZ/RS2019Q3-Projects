@@ -33,7 +33,7 @@ module.exports = {
   },
 
   getWeatherWeek: async (cityId) => {
-    const url = 'http://api.openweathermap.org/data/2.5/forecast';
+    const url = 'https://api.openweathermap.org/data/2.5/forecast';
     const key = '678c9b8a8410be1560b31076e2fb16c5';
     const addUrl = `?id=${cityId}&cnt=25`;
     let data = '';
@@ -63,6 +63,7 @@ module.exports = {
     const data = await response.json();
     const image = new Image();
     image.src = data.urls.full;
+    image.setAttribute('crossOrigin', '');
     return image;
   },
 

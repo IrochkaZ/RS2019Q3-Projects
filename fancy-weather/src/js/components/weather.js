@@ -810,6 +810,6 @@ export default class Weather {
     this.weatherContainer.querySelector('.description__weather-temperature').innerText = ` ${(parseInt(this.changeState.main.feels_like, 10) >= 273) ? (parseInt(this.changeState.main.feels_like, 10) - 273) : -(273 - parseInt(this.changeState.main.feels_like, 10))} °`;
     this.weatherContainer.querySelector('.description__weather-wind').innerText = ` ${this.changeState.wind.speed} m/s`;
     this.weatherContainer.querySelector('.description__weather-humidity').innerText = ` ${this.changeState.main.humidity} %`;
-    this.weatherContainer.querySelector('.weather__icon').src = `http://openweathermap.org/img/wn/${this.changeState.weather[0].icon}@2x.png`;
+    this.weatherContainer.querySelector('.weather__icon').src = `https://openweathermap.org/img/wn/${this.changeState.weather[0].icon}@2x.png`;
   }
 }

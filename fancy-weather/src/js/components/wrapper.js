@@ -21,6 +21,7 @@ export default class Wrapper {
     const leftBlock = createEl('div', 'left__block', null, this.wrapper);
     leftBlock.append(this.toolbar.render());
     this.toolbar.events(this.wrapper);
+    // this.toolbar.converTemperaure(this.wrapper);
     leftBlock.append(this.weatherMain.render());
     leftBlock.append(this.weatherWeek.render());
 
