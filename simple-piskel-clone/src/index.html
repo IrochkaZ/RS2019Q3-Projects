@@ -5,11 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title> Simple Piskel Clone App</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <title>Simple Piskel Clone App</title>
 </head>
-<h1>Hello</h1>
-<body>
-</body>
 
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1  class = "heading"><a href="#"><img src="./assets/img/logo.png" alt="logo"></a></h1>
+            <div class="shape"><i class="fas fa-ellipsis-v"></i></div>
+        </header>
+        <main class="main">
+            <div class="instruments">
+                <div class="tools">
+                    <ul class="tools__color">
+                        <li class="tools__paints-buckets" data-tool='bucket' title='Paint bucket (B)'>
+                            <i class="fas fa-fill-drip"></i>
+                            <!-- <img src="./assets/img/paint_bucket.svg" alt="paint_bucket"> -->
+                        </li>
+                        <li class="tools__choose-color" data-tool='picker' title = 'Picker (P)'>
+                            <img src="./assets/img/choose_color.svg" alt="choose_color">
+                            <input type="color" name="favcolor" value="#ff0000">
+                            </li>
+                        <li class="tools__pencil active" data-tool='pencil' title='Pencil (P)'>
+                            <i class="fas fa-pencil-alt"></i>
+                            <!-- <img src="./assets/img/pencil.png" alt="pencil"></li> -->
+                        <li class="tools__eraser" data-tool='eraser' title='Eraser (P)' > <i class="fas fa-eraser"></i>
+                    </ul>
+                </div>
+                <div class="color">
+                    <ul class="color__change">
+                        <li class="color__current">
+                            <div class="color__circle current-circle"></div></li>
+                        <li class="color__prev">
+                            <div class="color__circle prev-circle"></div></li>
+                    </ul>
+                    <ul class="color__show">
+                        <li class="color__show-current predefined__red" data-color='#F74141'>
+                            <div class="color__circle show-circle predefined__red"  ></div><span class="color__text">red</span></li>
+                        <li class="color__show-prev predefined__blue" data-color='#41B6F7'>
+                            <div class="color__circle show__prev-circle"></div><span class="color__text" >blue</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="canvas">
+                <canvas id="canvas" class="canvas-style" width="512" height="512" ></canvas></div>
+                <div class="slidecontainer">
+                    <span class="px-size"></span>
+                    <input type="range"  name = "points" id="range" min="128" max="512" value="128" step="128">
+                </div>
+        </main>
+    </div>
+</body>
 </html>
