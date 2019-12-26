@@ -6,7 +6,7 @@
 }
 
 
-.tools__color,
+.tools__list,
 .color__change,
 .color__show {
     list-style: none;
@@ -18,19 +18,22 @@
 .heading{
     font-size: 20px;
 }
+
+.tools__choose-color{
+    color: #ffffff;
+    cursor: pointer;
+}
 .wrapper {
     background-color:#2d2d2d;
-    width: 1440px;
     margin: 0 auto;
 }
 
-.color__change {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.size__button:hover,
-li:hover {
-    background-color: #ebe9e4;
+.tools__paints-buckets:hover ,
+.tools__pencil:hover ,
+.tools__eraser:hover ,
+.tools__stroke:hover,
+.tools__choose-color:hover {
+    background-color: #66562f;
     cursor: pointer;
 }
 
@@ -40,6 +43,8 @@ li:hover {
 }
 
 .tools {
+    background: #3a3a3a;
+    width: 40%;
     margin-bottom: 92px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
 }
@@ -65,14 +70,35 @@ i.fas.fa-bars {
     width: 15%;
 }
 
-.color {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
-}
-
-li{
+.tools__paints-buckets,
+.tools__pencil ,
+.tools__eraser ,
+.tools__stroke,
+.tools__choose-color{
+    font-size: 25px;
     display: flex;
     padding: 12px 30px;
     justify-content: flex-start;
+}
+
+.color__current {
+    position: relative;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.color__prev {
+    position: relative;
+    bottom: 25px;
+    left: 35px;
+    cursor: pointer;
+}
+
+.swap {
+    cursor: pointer;
+    position: relative;
+    bottom: 48px;
+    left: 10px;
 }
 
 ul>li>img,
@@ -85,10 +111,9 @@ ul>li>div {
 }
 
 .color__circle {
-    border: 1px solid black;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
 }
 
 .main {
@@ -127,22 +152,11 @@ ul>li>div {
     border:1px solid #8f8b8b;
 }
 
-.current-circle {
-    background-color: #c4c4c4;
-}
-
-.prev-circle {
-    background-color: #41F795;
-}
-
-.show-circle {
-    background-color: #F74141;
-}
-
 .show__prev-circle {
     background-color: #41B6F7;
 }
 
 .active {
-    background: #ddd;
+    background: rgb(90, 89, 89);
+    border: 3px solid #ffd700;
 }

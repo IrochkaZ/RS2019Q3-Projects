@@ -19,34 +19,32 @@
         <main class="main">
             <div class="instruments">
                 <div class="tools">
-                    <ul class="tools__color">
-                        <li class="tools__paints-buckets" data-tool='bucket' title='Paint bucket (B)'>
+                    <ul class="tools__list">
+                        <li class="tools__paints-buckets" data-tool='bucket' title="Paint bucket (B)">
                             <i class="fas fa-fill-drip"></i>
-                            <!-- <img src="./assets/img/paint_bucket.svg" alt="paint_bucket"> -->
                         </li>
-                        <li class="tools__choose-color" data-tool='picker' title = 'Picker (P)'>
-                            <img src="./assets/img/choose_color.svg" alt="choose_color">
-                            <input type="color" name="favcolor" value="#ff0000">
-                            </li>
                         <li class="tools__pencil active" data-tool='pencil' title='Pencil (P)'>
                             <i class="fas fa-pencil-alt"></i>
-                            <!-- <img src="./assets/img/pencil.png" alt="pencil"></li> -->
-                        <li class="tools__eraser" data-tool='eraser' title='Eraser (P)' > <i class="fas fa-eraser"></i>
+                        <li class="tools__eraser" data-tool='eraser' title="Eraser (E)"> <i class = "fas fa-eraser"></i> </li>
+                        <li class="tools__stroke" data-tool='stroke' title ="Stroke (S)">
+                            <i class="fas fa-pencil-ruler" aria-hidden="true"></i>
+                        </li>
+                        <li class="tools__choose-color" data-tool='picker' title = "Picker (P)">
+                            <i class="fas fa-eye-dropper"></i>
+                        </li>
                     </ul>
                 </div>
                 <div class="color">
                     <ul class="color__change">
                         <li class="color__current">
-                            <div class="color__circle current-circle"></div></li>
+                            <input type="color" name="favcolor" value="#ff0000" class="color__circle current-circle"></li>
                         <li class="color__prev">
-                            <div class="color__circle prev-circle"></div></li>
+                            <input type="color" name="favcolor" value="#000000" class="color__circle prev-circle">
+                        </li>
                     </ul>
-                    <ul class="color__show">
-                        <li class="color__show-current predefined__red" data-color='#F74141'>
-                            <div class="color__circle show-circle predefined__red"  ></div><span class="color__text">red</span></li>
-                        <li class="color__show-prev predefined__blue" data-color='#41B6F7'>
-                            <div class="color__circle show__prev-circle"></div><span class="color__text" >blue</span></li>
-                    </ul>
+                    <div class="swap" title="Swap (X)">
+                        <i class="fas fa-retweet"></i>
+                    </div>
                 </div>
             </div>
             <div class="canvas">
