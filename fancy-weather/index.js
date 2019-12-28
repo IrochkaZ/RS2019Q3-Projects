@@ -9,12 +9,12 @@ const wrap = new Wrapper();
 
 getLocation().then(
   (dataLocation) => {
-    wrap.search.query = dataLocation.region_name;
+    wrap.search.query = dataLocation.city;
     let query;
-    if (dataLocation.region_name === '') {
+    if (dataLocation.city === '') {
       query = 'Minsk';
     } else {
-      query = dataLocation.region_name;
+      query = dataLocation.city;
     }
     getWeather(query, 'city').then(
       (data) => {
