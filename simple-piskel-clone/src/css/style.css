@@ -23,6 +23,15 @@
     color: #ffffff;
     cursor: pointer;
 }
+
+/* .tools__paints-buckets{
+    background-image: url('../assets/img/pencil.png');
+}
+ */
+.tools__pencil{
+    color: #ffffff;
+    font-size: 14px;
+}
 .wrapper {
     background-color:#2d2d2d;
     margin: 0 auto;

@@ -2,7 +2,6 @@ const state = {
   tools: {
     pencil: true,
     bucket: false,
-    picker: false,
     eraser: false,
     stroke: false,
   },
