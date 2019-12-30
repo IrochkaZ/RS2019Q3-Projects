@@ -9,6 +9,7 @@
 .tools__list,
 .color__change,
 .color__show {
+    background-repeat: no-repeat;
     list-style: none;
     font-size: 16px;
     line-height: 24px;
@@ -24,12 +25,7 @@
     cursor: pointer;
 }
 
-/* .tools__paints-buckets{
-    background-image: url('../assets/img/pencil.png');
-}
- */
 .tools__pencil{
-    color: #ffffff;
     font-size: 14px;
 }
 .wrapper {
@@ -42,6 +38,7 @@
 .tools__eraser:hover ,
 .tools__stroke:hover,
 .tools__choose-color:hover {
+    background-repeat: no-repeat;
     background-color: #66562f;
     cursor: pointer;
 }
@@ -49,6 +46,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
+    height: -webkit-fill-available;
 }
 
 .tools {
@@ -75,8 +73,9 @@ i.fas.fa-bars {
 }
 
 .instruments {
+    background-repeat: no-repeat;
     margin-left: 25px;
-    width: 15%;
+    width: 9%;
 }
 
 .tools__paints-buckets,
@@ -84,9 +83,11 @@ i.fas.fa-bars {
 .tools__eraser ,
 .tools__stroke,
 .tools__choose-color{
+    text-align:center; 
+    background-repeat: no-repeat;
     font-size: 25px;
     display: flex;
-    padding: 12px 30px;
+    padding: 32px 0px;
     justify-content: flex-start;
 }
 
@@ -166,6 +167,9 @@ ul>li>div {
 }
 
 .active {
+    box-sizing: border-box;
+    transition: .4s;
+    background-repeat: no-repeat;
     background: rgb(90, 89, 89);
     border: 3px solid #ffd700;
 }

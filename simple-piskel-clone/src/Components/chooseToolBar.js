@@ -1,6 +1,12 @@
 import pen from '../assets/img/pencil.png';
+import paintsBuckets from '../assets/img/paint-bucket.png';
+import stroke from '../assets/img/stroke.png';
+import eraser from '../assets/img/eraser.png';
 
 document.querySelector('.tools__pencil').style.backgroundImage = `url(${pen})`;
+document.querySelector('.tools__paints-buckets').style.backgroundImage = `url(${paintsBuckets})`;
+document.querySelector('.tools__stroke').style.backgroundImage = `url(${stroke})`;
+document.querySelector('.tools__eraser').style.backgroundImage = `url(${eraser})`;
 
 const chooseToolBar = (obj) => {
   const buttons = document.querySelector('.tools__list');
