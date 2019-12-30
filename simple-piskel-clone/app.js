@@ -8,6 +8,7 @@ import chooseToolBar from './src/Components/chooseToolBar';
 import colorFill from './src/Components/colorFill';
 import LocalStorageData from './src/Components/LocalStorageData';
 import pxSizeChange from './src/Components/pxSizeChange';
+import eraser from './src/Components/eraser';
 
 
 const canvas = document.getElementById('canvas');
@@ -21,6 +22,7 @@ const init = () => {
   chooseToolBar(state);
   colorFill(ctx, canvas, state);
   pxSizeChange(state);
+  eraser(canvas, ctx);
 };
 
 init();
