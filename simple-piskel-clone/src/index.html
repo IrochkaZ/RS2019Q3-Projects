@@ -28,11 +28,10 @@
                 </div>
                 <div class="color">
                     <ul class="color__change">
-                        <li class="color__current">
-                            <input type="color" name="favcolor" value="#ff0000" class="color__circle current-circle"></li>
-                        <li class="color__prev">
-                            <input type="color" name="favcolor" value="#000000" class="color__circle prev-circle">
-                        </li>
+                        <!-- <li class="color__current"> -->
+                            <input type="color" value="#ff0000" class="color__circle current-circle">
+                        <!-- <li class="color__prev"> -->
+                            <input type="color" name="favcolor" class="color__circle prev-circle">
                     </ul>
                     <div class="swap" title="Swap (X)">
                         <i class="fas fa-retweet"></i>
@@ -42,8 +41,20 @@
             <div class="canvas">
                 <canvas id="canvas" class="canvas-style" width="512" height="512" ></canvas></div>
                 <div class="slidecontainer">
-                    <span class="px-size"></span>
+                    <span class="px-size">Pixel Size</span>
                     <input type="range"  name = "points" id="range" min="128" max="512" value="128" step="128">
+                </div>
+                <div class="canvas__size">
+                    <h3>Canvas</h3>
+                    <div class="input-group">
+                        <span class="input-group-addon">X</span>
+                        <input type="number" id="sizeX" class="form-control" placeholder="sizeX" value="128" class="size">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Y</span>
+                        <input type="number" id="sizeY" class="form-control" placeholder="sizeY" value="128" class="size">
+                    </div>
+                    <input type="button" class="update__size btn btn-success" value="Update" id="canvasUpdate">
                 </div>
         </main>
     </div>

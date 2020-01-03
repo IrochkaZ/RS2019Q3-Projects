@@ -9,6 +9,7 @@ import colorFill from './src/Components/colorFill';
 import LocalStorageData from './src/Components/LocalStorageData';
 import pxSizeChange from './src/Components/pxSizeChange';
 import eraser from './src/Components/eraser';
+import lineDRawing from './src/Components/lineDrawing';
 
 
 const canvas = document.getElementById('canvas');
@@ -23,6 +24,7 @@ const init = () => {
   colorFill(ctx, canvas, state);
   pxSizeChange(state);
   eraser(canvas, ctx);
+  lineDRawing(canvas, ctx);
 };
 
 init();

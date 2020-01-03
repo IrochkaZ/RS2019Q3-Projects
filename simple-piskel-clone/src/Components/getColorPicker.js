@@ -7,8 +7,8 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 
   const changeColor = (predefinedColor = null) => {
     const colorState = obj.colors;
-    const currentColor = document.querySelector('.color__current > .current-circle');
-    const prevColor = document.querySelector('.color__prev > .prev-circle');
+    const currentColor = document.querySelector('.current-circle');
+    const prevColor = document.querySelector('.prev-circle');
     const tempColor = colorState.current;
     colorState.current = predefinedColor || colorState.prev;
 
@@ -18,12 +18,8 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
   };
 
   const colorChangeFromColorBar = ({ target }) => {
-    if (target.classList.contains('color__current') || target.classList.contains('color__prev')) {
+    if (target.classList.contains('current-circle') || target.classList.contains('prev-circle')) {
       changeColor();
-    }
-
-    if (target.classList.contains('predefined__red') || target.classList.contains('predefined__blue')) {
-      changeColor(target.getAttribute('data-color'));
     }
   };
 
