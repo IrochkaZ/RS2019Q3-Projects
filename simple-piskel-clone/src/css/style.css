@@ -94,13 +94,13 @@ i.fas.fa-bars {
     justify-content: flex-start;
 }
 
-.color__current {
+.current-circle {
     position: relative;
     z-index: 100;
     cursor: pointer;
 }
 
-.color__prev {
+.prev-circle {
     position: relative;
     bottom: 25px;
     left: 35px;
@@ -147,6 +147,7 @@ ul>li>div {
 .canvas {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 
@@ -164,7 +165,15 @@ ul>li>div {
 .canvas-style {
     background-color: #8f8b8b;
     border:1px solid #8f8b8b;
+    position: absolute;
+    z-index: 100;
 }
+
+.canvas-style.alt{
+    background-color: transparent;
+    z-index: 90;
+}
+
 
 
 .active {

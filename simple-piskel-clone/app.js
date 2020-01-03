@@ -15,16 +15,19 @@ import lineDRawing from './src/Components/lineDrawing';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+const canvasAlt = document.getElementById('canvasAlt');
+const ctxAlt = canvas.getContext('2d');
+
 const init = () => {
   getSizes(canvas, state);
   LocalStorageData(canvas, ctx, state);
   pencilDrawing(canvas, ctx);
   getColorPicker(canvas, ctx, state);
-  chooseToolBar(state);
+  chooseToolBar(canvas, canvasAlt, state);
   colorFill(ctx, canvas, state);
   pxSizeChange(state);
   eraser(canvas, ctx);
-  lineDRawing(canvas, ctx);
+  lineDRawing(canvas, ctx, canvasAlt, ctxAlt);
 };
 
 init();

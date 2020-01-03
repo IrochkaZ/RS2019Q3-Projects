@@ -8,7 +8,21 @@ document.querySelector('.tools__paints-buckets').style.backgroundImage = `url(${
 document.querySelector('.tools__stroke').style.backgroundImage = `url(${stroke})`;
 document.querySelector('.tools__eraser').style.backgroundImage = `url(${eraser})`;
 
-const chooseToolBar = (obj) => {
+let canvasAltState = false;
+
+const triggerCanvas = (cnv, cnvAlt) => {
+  const cnvInst = cnv;
+  const cnvAltInst = cnvAlt;
+  if (canvasAltState === true) {
+    cnvInst.style.zIndex = 90;
+    cnvAltInst.style.zIndex = 100;
+  } else {
+    cnvInst.style.zIndex = 100;
+    cnvAltInst.style.zIndex = 90;
+  }
+};
+
+const chooseToolBar = (canvasItem, canvasAltItem, obj) => {
   const buttons = document.querySelector('.tools__list');
   const toolbar = obj.tools;
   const toolChoose = ({ target }) => {
@@ -23,6 +37,7 @@ const chooseToolBar = (obj) => {
       toolbar.eraser = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
+      canvasAltState = false;
     }
 
     if (toolEvent.getAttribute('data-tool') === 'bucket') {
@@ -32,6 +47,7 @@ const chooseToolBar = (obj) => {
       toolbar.eraser = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
+      canvasAltState = false;
     }
     if (toolEvent.getAttribute('data-tool') === 'eraser') {
       toolbar.pencil = false;
@@ -40,6 +56,7 @@ const chooseToolBar = (obj) => {
       toolbar.stroke = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
+      canvasAltState = false;
     }
     if (toolEvent.getAttribute('data-tool') === 'stroke') {
       toolbar.pencil = false;
@@ -48,8 +65,10 @@ const chooseToolBar = (obj) => {
       toolbar.stroke = true;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
+      canvasAltState = true;
     }
-    global.console.log(toolbar);
+    // global.console.log(toolbar);
+    triggerCanvas(canvasItem, canvasAltItem);
   };
 
   buttons.addEventListener('click', toolChoose, false);

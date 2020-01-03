@@ -42,7 +42,6 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
   };
 
   colorInput.addEventListener('change', changeColorInput);
-
   colorContainer.addEventListener('click', colorChangeFromColorBar, true);
   canvasItem.addEventListener('click', colorPickFromCanvas);
 };

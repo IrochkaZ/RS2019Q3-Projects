@@ -39,22 +39,20 @@
                 </div>
             </div>
             <div class="canvas">
-                <canvas id="canvas" class="canvas-style" width="512" height="512" ></canvas></div>
+                <canvas id="canvas" class="canvas-style" width="512" height="512" ></canvas>
+                <canvas id="canvasAlt" class="canvas-style alt" width="512" height="512" ></canvas>
+            </div>
                 <div class="slidecontainer">
                     <span class="px-size">Pixel Size</span>
                     <input type="range"  name = "points" id="range" min="128" max="512" value="128" step="128">
                 </div>
                 <div class="canvas__size">
-                    <h3>Canvas</h3>
-                    <div class="input-group">
-                        <span class="input-group-addon">X</span>
-                        <input type="number" id="sizeX" class="form-control" placeholder="sizeX" value="128" class="size">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Y</span>
-                        <input type="number" id="sizeY" class="form-control" placeholder="sizeY" value="128" class="size">
-                    </div>
-                    <input type="button" class="update__size btn btn-success" value="Update" id="canvasUpdate">
+                    <h3>Canvas Size</h3>
+                    <select>
+                        <option value="32X32">32X32</option>
+                        <option value="64X64">64X64</option>
+                        <option value="128X128">32X32</option>
+                    </select>>
                 </div>
         </main>
     </div>

@@ -1,22 +1,41 @@
 import state from './state';
 
-const lineDrawing = (e, canvasItem, ctxItem) => {
-  const context = ctxItem;
-  const mouse = { x: 0, y: 0 };
-  mouse.x = e.pageX - this.offsetLeft;
-  mouse.y = e.pageY - this.offsetTop;
-  const { current: color } = state.colors;
-  const lineDraw = ({ buttons }) => {
-    const { stroke } = state.tools;
-    if (buttons > 0 && stroke) {
-      context.strokeStyle = color;
-      context.beginPath();
-      context.moveTo(mouse.x, mouse.y);
-      context.lineTo(mouse.x, mouse.y);
-      context.stroke();
+let lastMouseX;
+let lastMouseY;
+let isDrawing = false;
+const tempImg = new Image();
+
+const lineDrawing = (canvasItem, ctxItem, canvasItemAlt, ctxItemAlt) => {
+  const { tools } = state;
+
+  canvasItemAlt.addEventListener('mousedown', (event) => {
+    if (tools.stroke === true) {
+      isDrawing = true;
+      lastMouseX = event.offsetX;
+      lastMouseY = event.offsetY;
     }
-  };
-  canvasItem.addEventListener('mousemove', lineDraw);
+  });
+
+  canvasItemAlt.addEventListener('mousemove', (event) => {
+    if (tools.stroke === true && isDrawing === true) {
+      ctxItemAlt.beginPath();
+      ctxItemAlt.clearRect(0, 0, canvasItemAlt.width, canvasItemAlt.height);
+      ctxItemAlt.moveTo(lastMouseX, lastMouseY);
+      ctxItemAlt.lineTo(event.offsetX, event.offsetY);
+      ctxItemAlt.stroke();
+      ctxItemAlt.closePath();
+    }
+  });
+
+  canvasItemAlt.addEventListener('mouseup', () => {
+    if (tools.stroke === true) {
+      isDrawing = false;
+      tempImg.src = canvasItemAlt.toDataURL();
+      global.console.log(tempImg.src);
+      ctxItem.drawImage(canvasItemAlt, 0, 0, canvasItem.width, canvasItem.height);
+      ctxItemAlt.clearRect(0, 0, canvasItemAlt.width, canvasItemAlt.height);
+    }
+  });
 };
 
 export default lineDrawing;
