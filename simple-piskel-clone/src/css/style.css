@@ -5,6 +5,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
+ul {
+    list-style-type: none;
+}
 
 .tools__list,
 .color__change,
@@ -66,8 +69,87 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-i.fas.fa-bars {
-    font-size: 30px;
+.frames{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    padding: 8px 15px;
+    -webkit-box-shadow: 0 4px 4px rgba(0,0,0,.24), 0 0 4px rgba(0,0,0,.12);
+    box-shadow: 0 4px 4px rgba(0,0,0,.24), 0 0 4px rgba(0,0,0,.12);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.frames .item.active {
+    border: 3px solid #f88305;
+}
+
+.item__img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    -ms-interpolation-mode: nearest-neighbor;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-pixelated;
+    image-rendering: pixelated;
+    top: 0;
+    left: 0;
+}
+
+.frames .item {
+    width: 100px;
+    height: 100px;
+    background-color: #e6e5e5;
+    /* border: 3px solid #c4c4c4; */
+    margin-bottom: 10px;
+    /* -webkit-user-select: none; */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    z-index: 2;
+}
+
+.item__number {
+    font-size: 1rem;
+    top: 0;
+    left: 0;
+}
+
+.frames .item__delete, .content .frames .item__drag, .content .frames .item__duplicate, .content .frames .item__number{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background-color: #c4c4c4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+}
+
+.frames .item__delete {
+    top: 0;
+    right: 0;
+}
+
+.frames .item__drag {
+    bottom: 0;
+    left: 0;
+}
+
+.item__drag-img {
+    width: 10px;
+    height: 16px;
 }
 
 .logo {
@@ -107,17 +189,44 @@ i.fas.fa-bars {
     cursor: pointer;
 }
 
+.frames .add {
+    width: 100px;
+    height: 50px;
+    background-color: #e6e5e5;
+    border: 3px solid #c4c4c4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add__icon {
+    font-weight: 500;
+    width: 28px;
+    height: 28px;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 5px;
+}
+
+.add__text {
+    font-size: .7rem;
+}
+
 .swap {
     cursor: pointer;
     position: relative;
     bottom: 48px;
     left: 10px;
 }
-
+/* 
 ul>li>img,
 ul>li>div {
     margin-right: 35px;
-}
+} */
 
 .shape {
     margin-left: 1075px;
