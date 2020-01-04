@@ -14,11 +14,11 @@ const triggerCanvas = (cnv, cnvAlt) => {
   const cnvInst = cnv;
   const cnvAltInst = cnvAlt;
   if (canvasAltState === true) {
-    cnvInst.style.zIndex = 90;
-    cnvAltInst.style.zIndex = 100;
+    cnvInst.style.zIndex = 5;
+    cnvAltInst.style.zIndex = 6;
   } else {
-    cnvInst.style.zIndex = 100;
-    cnvAltInst.style.zIndex = 90;
+    cnvInst.style.zIndex = 5;
+    cnvAltInst.style.zIndex = 6;
   }
 };
 

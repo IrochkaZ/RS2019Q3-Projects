@@ -8,7 +8,7 @@ import chooseToolBar from './src/Components/chooseToolBar';
 import colorFill from './src/Components/colorFill';
 import LocalStorageData from './src/Components/LocalStorageData';
 import pxSizeChange from './src/Components/pxSizeChange';
-import eraser from './src/Components/eraser';
+import clearByEraser from './src/Components/clearByEraser';
 import lineDRawing from './src/Components/lineDrawing';
 
 
@@ -26,7 +26,7 @@ const init = () => {
   chooseToolBar(canvas, canvasAlt, state);
   colorFill(ctx, canvas, state);
   pxSizeChange(state);
-  eraser(canvas, ctx);
+  clearByEraser(canvas, ctx);
   lineDRawing(canvas, ctx, canvasAlt, ctxAlt);
 };
 

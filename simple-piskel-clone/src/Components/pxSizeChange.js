@@ -1,6 +1,6 @@
 const pxSizeChange = (obj) => {
-  const range = document.querySelector('#range');
-  const labelRange = document.querySelector('.px-size');
+  const range = document.querySelector('.pen-size-container ');
+  const labelRange = document.querySelector('.pen-size-option');
   const changeBlockSize = (object, { target }) => {
     const st = object;
     st.blockSize.width = st.canvasSize.width / target.value;
