@@ -16,6 +16,14 @@ import framesMove from './src/Components/framesMove';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+canvas.addEventListener('mousemove', () => {
+  if (canvas) {
+    canvas.style.cursor = 'pointer';
+  } else {
+    canvas.style.cursor = 'default';
+  }
+});
+
 // const canvasAlt = document.getElementById('canvasAlt');
 // const ctxAlt = canvas.getContext('2d');
 
