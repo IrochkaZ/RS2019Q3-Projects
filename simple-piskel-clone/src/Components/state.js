@@ -6,7 +6,7 @@ const state = {
     stroke: false,
   },
   colors: {
-    current: '',
+    current: '#ff0000',
     prev: '',
   },
   canvasSize: {

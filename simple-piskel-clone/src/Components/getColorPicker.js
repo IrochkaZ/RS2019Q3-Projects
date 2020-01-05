@@ -13,8 +13,8 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
     colorState.current = predefinedColor || colorState.prev;
 
     colorState.prev = tempColor;
-    currentColor.style.background = colorState.current;
-    prevColor.style.background = colorState.prev;
+    currentColor.style.value = colorState.current.value;
+    prevColor.style.value = colorState.prev.value;
   };
 
   const colorChangeFromColorBar = ({ target }) => {

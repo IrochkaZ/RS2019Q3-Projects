@@ -128,6 +128,7 @@ ul {
 }
 
 .item__delete,.item__drag, .item__duplicate,.item__number{
+    background: no-repeat;
     width: 30px;
     height: 30px;
     position: absolute;
@@ -143,6 +144,11 @@ ul {
     align-items: center;
     cursor: pointer;
     color: #fff;
+}
+
+
+.item__delete,.item__drag, .item__duplicate,.item__number:hover{
+    background-color: #e7e6e6;
 }
 
 .frames .item__delete {
@@ -292,6 +298,7 @@ ul {
 }
 
 .color__circle {
+    background-color: burlywood;
 	display: block;
     cursor: pointer;
     width: 50px;

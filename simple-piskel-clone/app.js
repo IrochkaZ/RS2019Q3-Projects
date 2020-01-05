@@ -10,6 +10,7 @@ import LocalStorageData from './src/Components/LocalStorageData';
 import pxSizeChange from './src/Components/pxSizeChange';
 import clearByEraser from './src/Components/clearByEraser';
 // import lineDRawing from './src/Components/lineDrawing';
+import framesMove from './src/Components/framesMove';
 
 
 const canvas = document.getElementById('canvas');
@@ -27,6 +28,7 @@ const init = () => {
   colorFill(ctx, canvas, state);
   pxSizeChange(state, ctx);
   clearByEraser(canvas, ctx);
+  framesMove(ctx, state);
 };
 
 init();
