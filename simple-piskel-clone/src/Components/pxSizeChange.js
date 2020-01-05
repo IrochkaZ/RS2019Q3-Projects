@@ -1,18 +1,17 @@
 const pxSizeChange = (obj) => {
-  const range = document.querySelector('.pen-size-container ');
-  const labelRange = document.querySelector('.pen-size-option');
-  const changeBlockSize = (object, { target }) => {
-    const st = object;
-    st.blockSize.width = st.canvasSize.width / target.value;
-    st.blockSize.height = st.canvasSize.height / target.value;
-  };
+  const penSizeWrap = document.querySelector('.pen-size-container ');
+  const state = obj;
 
-  const rangeChangeListener = (event) => {
-    changeBlockSize(obj, event);
-    labelRange.innerText = event.target.value;
-  };
-
-  range.addEventListener('change', rangeChangeListener);
+  penSizeWrap.addEventListener('click', (event) => {
+    if (event.target.hasAttribute('data-size')) {
+      document.querySelector('.pen-size-option.selected').classList.remove('selected');
+      event.target.classList.add('selected');
+      state.blockSize.width = state.blockSize.widthStart * event.target.getAttribute('data-size');
+      state.blockSize.height = state.blockSize.heightStart * event.target.getAttribute('data-size');
+      global.console.log(state);
+    }
+  });
 };
+
 
 export default pxSizeChange;

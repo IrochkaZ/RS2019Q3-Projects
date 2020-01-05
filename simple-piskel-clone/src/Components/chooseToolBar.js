@@ -8,9 +8,9 @@ document.querySelector('.tools__paints-buckets').style.backgroundImage = `url(${
 document.querySelector('.tools__stroke').style.backgroundImage = `url(${stroke})`;
 document.querySelector('.tools__eraser').style.backgroundImage = `url(${eraser})`;
 
-let canvasAltState = false;
+// let canvasAltState = false;
 
-const triggerCanvas = (cnv, cnvAlt) => {
+/* const triggerCanvas = (cnv, cnvAlt) => {
   const cnvInst = cnv;
   const cnvAltInst = cnvAlt;
   if (canvasAltState === true) {
@@ -20,9 +20,9 @@ const triggerCanvas = (cnv, cnvAlt) => {
     cnvInst.style.zIndex = 5;
     cnvAltInst.style.zIndex = 6;
   }
-};
+}; */
 
-const chooseToolBar = (canvasItem, canvasAltItem, obj) => {
+const chooseToolBar = (canvasItem, obj) => {
   const buttons = document.querySelector('.tools__list');
   const toolbar = obj.tools;
   const toolChoose = ({ target }) => {
@@ -37,7 +37,7 @@ const chooseToolBar = (canvasItem, canvasAltItem, obj) => {
       toolbar.eraser = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      canvasAltState = false;
+      // canvasAltState = false;
     }
 
     if (toolEvent.getAttribute('data-tool') === 'bucket') {
@@ -47,7 +47,7 @@ const chooseToolBar = (canvasItem, canvasAltItem, obj) => {
       toolbar.eraser = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      canvasAltState = false;
+      // canvasAltState = false;
     }
     if (toolEvent.getAttribute('data-tool') === 'eraser') {
       toolbar.pencil = false;
@@ -56,7 +56,7 @@ const chooseToolBar = (canvasItem, canvasAltItem, obj) => {
       toolbar.stroke = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      canvasAltState = false;
+      // canvasAltState = false;
     }
     if (toolEvent.getAttribute('data-tool') === 'stroke') {
       toolbar.pencil = false;
@@ -65,10 +65,9 @@ const chooseToolBar = (canvasItem, canvasAltItem, obj) => {
       toolbar.stroke = true;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      canvasAltState = true;
+      // canvasAltState = true;
     }
-    // global.console.log(toolbar);
-    triggerCanvas(canvasItem, canvasAltItem);
+    // triggerCanvas(canvasItem, canvasAltItem);
   };
 
   buttons.addEventListener('click', toolChoose, false);

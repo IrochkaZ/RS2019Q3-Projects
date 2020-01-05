@@ -9,25 +9,24 @@ import colorFill from './src/Components/colorFill';
 import LocalStorageData from './src/Components/LocalStorageData';
 import pxSizeChange from './src/Components/pxSizeChange';
 import clearByEraser from './src/Components/clearByEraser';
-import lineDRawing from './src/Components/lineDrawing';
+// import lineDRawing from './src/Components/lineDrawing';
 
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-const canvasAlt = document.getElementById('canvasAlt');
-const ctxAlt = canvas.getContext('2d');
+// const canvasAlt = document.getElementById('canvasAlt');
+// const ctxAlt = canvas.getContext('2d');
 
 const init = () => {
   getSizes(canvas, state);
   LocalStorageData(canvas, ctx, state);
-  pencilDrawing(canvas, ctx);
+  pencilDrawing(canvas, ctx, state);
   getColorPicker(canvas, ctx, state);
-  chooseToolBar(canvas, canvasAlt, state);
+  chooseToolBar(canvas, state);
   colorFill(ctx, canvas, state);
-  pxSizeChange(state);
+  pxSizeChange(state, ctx);
   clearByEraser(canvas, ctx);
-  lineDRawing(canvas, ctx, canvasAlt, ctxAlt);
 };
 
 init();

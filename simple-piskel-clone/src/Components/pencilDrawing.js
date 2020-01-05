@@ -1,7 +1,6 @@
-import state from './state';
-
-const pencilDrawing = (canvasItem, ctxItem) => {
+const pencilDrawing = (canvasItem, ctxItem, obj) => {
   const context = ctxItem;
+  const state = obj;
   const pencilDraw = ({ offsetX, offsetY, buttons }) => {
     const { pencil } = state.tools;
     const { width, height } = state.blockSize;
