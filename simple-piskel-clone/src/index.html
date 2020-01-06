@@ -34,19 +34,16 @@
                 </div>
                 <div class="color">
                     <ul class="color__change">
-                        <!-- <li class="color__current"> -->
-                            <input type="color" value="#ff0000" class="color__circle current-circle" title = "Primary color">
-                        <!-- <li class="color__prev"> -->
+                            <input  type="color" value="#ff0000" class="color__circle current-circle" title = "Primary color">
                             <input type="color" value="#000000" class="color__circle prev-circle" title = "Secondary color">
                     </ul>
-                    <div class="swap" title="Swap (X)">
-                        <i class="fas fa-retweet"></i>
-                    </div>
+                    <div class="swap" title="Swap (X)"></div>
                 </div>
             </div>
             <div class="frames">
                 <ul class="item-wrap">
                 <li class="item active">
+                    <img class="item__img">
                     <div class="item__number" title="Toggle for preview">1</div>
                     <div class="item__delete" title="Delete this frame">
                     </div>
@@ -66,7 +63,7 @@
             </div>
             <div class="preview-wrapper">
                 <div class="preview">
-                    <img alt="preview" class="preview__item active" src="#">
+                    <img class="preview__item active">
                   </div>
                   <div class="fps-change">
                     <label class="preview__label" for="volume"><span id="fps-number">0</span> FPS</label>
@@ -82,8 +79,8 @@
                 </div>
                 <button class="fullscreen btn">Fullscreen</button>
                 <div class="buttons__download-image">
-                    <button class="download btn">Download in .gif</button>
-                    <button class="dowmload btn">Download in .apng</button>  
+                    <a class="gif">Download in .gif</a>
+                    <a class="apng">Download in .apng</a>  
                 </div>
             <div class="cursor-coordinates"></div>
         </div>

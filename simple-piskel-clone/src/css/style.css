@@ -127,6 +127,9 @@ ul {
     right: 0;
 }
 
+.item:only-child{
+    cursor: pointer;
+}
 .item__delete,.item__drag, .item__duplicate,.item__number{
     background: no-repeat;
     width: 30px;
@@ -286,10 +289,13 @@ ul {
 }
 
 .swap {
+    transform: rotate(45deg);
     cursor: pointer;
     position: relative;
     bottom: 48px;
-    left: 10px;
+    left: 8px;
+    height: 24px;
+    width: 24px;
 }
 
 
@@ -379,6 +385,7 @@ ul {
 }
 
 .preview__item.active{
+    background: antiquewhite;
     visibility: visible;
 }
 
@@ -427,7 +434,7 @@ ul {
     cursor: pointer;
 }
 
-.btn{
+.gif, .apng, .fullscreen{
     font-size: 14px;
     padding: 8px;
     border: 1px solid transparent;

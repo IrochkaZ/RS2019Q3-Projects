@@ -10,6 +10,7 @@ document.querySelector('.item__drag').style.backgroundImage = `url(${move})`;
 document.querySelector('.item__duplicate').style.backgroundImage = `url(${duplicate})`;
 const frameWrap = document.querySelector('.item-wrap');
 
+
 const framesMove = (ctx, obj) => {
   const { width, height } = obj.canvasSize;
   const addButtonFrame = document.querySelector('.add');
@@ -24,6 +25,7 @@ const framesMove = (ctx, obj) => {
     const frameItem = document.querySelectorAll('.frames .item');
     const item = frameItem[0].cloneNode(true);
     item.classList.remove('active');
+    item.firstElementChild.src = '';
     frameWrap.appendChild(item);
     ctx.clearRect(0, 0, width, height);
     frameItem.forEach((el) => {

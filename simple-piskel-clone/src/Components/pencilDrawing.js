@@ -7,7 +7,6 @@ const pencilDrawing = (canvasItem, ctxItem, obj) => {
     const { current: color } = state.colors;
 
     if (buttons > 0 && pencil) {
-      global.console.log(pencil);
       const stepX = Math.floor(offsetX / width) * width;
       const stepY = Math.floor(offsetY / height) * height;
       context.fillStyle = color;
