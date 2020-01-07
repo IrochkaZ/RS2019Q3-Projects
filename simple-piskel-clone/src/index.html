@@ -34,8 +34,8 @@
                 </div>
                 <div class="color">
                     <ul class="color__change">
-                            <input  type="color" value="#ff0000" class="color__circle current-circle" title = "Primary color">
-                            <input type="color" value="#000000" class="color__circle prev-circle" title = "Secondary color">
+                            <input  type="color" class="color__circle current-circle" title = "Primary color">
+                            <input type="color"  class="color__circle prev-circle" title = "Secondary color">
                     </ul>
                     <div class="swap" title="Swap (X)"></div>
                 </div>
@@ -43,13 +43,13 @@
             <div class="frames">
                 <ul class="item-wrap">
                 <li class="item active">
-                    <img class="item__img">
+                    <img class="item__img" src='assets/img/blank-bg.png'>
                     <div class="item__number" title="Toggle for preview">1</div>
                     <div class="item__delete" title="Delete this frame">
                     </div>
                     <div class="item__drag" title="Move this frame">
                     </div>
-                    <div class="item__duplicate" title="Duplicate this frame">>
+                    <div class="item__duplicate" title="Duplicate this frame">
                     </div>
                 </li>
                 </ul>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="canvas">
-                <canvas id="canvas" class="canvas-style" width="850" height="650" ></canvas>
+                <canvas id="canvas" class="canvas-style" width="600" height="600" ></canvas>
             </div>
             <div class="preview-wrapper">
                 <div class="preview">
@@ -74,7 +74,7 @@
                     <select class="select_size">
                         <option value="32X32">32X32</option>
                         <option value="64X64">64X64</option>
-                        <option value="128X128">32X32</option>
+                        <option value="128X128">128X128</option>
                     </select>
                 </div>
                 <button class="fullscreen btn">Fullscreen</button>
@@ -83,6 +83,7 @@
                     <a class="apng">Download in .apng</a>  
                 </div>
             <div class="cursor-coordinates"></div>
+            <button class="save">Save</button>
         </div>
         </main>
     </div>

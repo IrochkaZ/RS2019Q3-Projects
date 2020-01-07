@@ -1,4 +1,4 @@
-import state from './state';
+// import state from './state';
 import change from '../assets/img/change.png';
 
 document.querySelector('.swap').style.backgroundImage = `url(${change})`;
@@ -9,6 +9,8 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
   const swapColor = document.querySelector('.swap');
   const currentColor = document.querySelector('.current-circle');
   const prevColor = document.querySelector('.prev-circle');
+  currentColor.value = obj.colors.current;
+  prevColor.value = obj.colors.prev;
 
   const changeColor = (predefinedColor = null) => {
     const colorState = obj.colors;
@@ -22,38 +24,37 @@ const getColorPicker = (canvasItem, ctxItem, obj) => {
 
   const colorChangeFromColorBar = ({ target }) => {
     if (target.classList.contains('current-circle') || target.classList.contains('prev-circle')) {
-      global.console.log(changeColor());
       changeColor();
     }
-  };
-
-  const colorPickFromCanvas = ({ offsetX, offsetY }) => {
-    const { picker } = state.tools;
-
-    const rgbToHex = (...args) => args.map((ex) => {
-      const hex = ex.toString(16);
-      return hex.length === 1 ? `0${hex}` : hex;
-    }).join('');
-
-    if (picker) {
-      const rgba = ctxItem.getImageData(offsetX, offsetY, 1, 1).data;
-      changeColor(`#${rgbToHex(...rgba)}`);
-    }
-  };
-
-  const changeColorInput = ({ target }) => {
-    changeColor(target.value);
   };
 
   swapColor.addEventListener('click', () => {
     const divColor = currentColor.value;
     currentColor.value = prevColor.value;
     prevColor.value = divColor;
+    changeColor();
   });
+  // const colorPickFromCanvas = ({ offsetX, offsetY }) => {
+  //   const { current } = obj.colors;
+
+  //   const rgbToHex = (...args) => args.map((ex) => {
+  //     const hex = ex.toString(16);
+  //     return hex.length === 1 ? `0${hex}` : hex;
+  //   }).join('');
+
+  //   if (current) {
+  //     const rgba = ctxItem.getImageData(offsetX, offsetY, 1, 1).data;
+  //     changeColor(`#${rgbToHex(...rgba)}`);
+  //   }
+  // };
+
+  const changeColorInput = ({ target }) => {
+    changeColor(target.value);
+  };
 
   colorInput.addEventListener('change', changeColorInput);
   colorContainer.addEventListener('click', colorChangeFromColorBar);
-  canvasItem.addEventListener('click', colorPickFromCanvas);
+  // canvasItem.addEventListener('click', colorPickFromCanvas);
 };
 
 export default getColorPicker;

@@ -8,7 +8,6 @@ const pxSizeChange = (obj) => {
       event.target.classList.add('selected');
       state.blockSize.width = state.blockSize.widthStart * event.target.getAttribute('data-size');
       state.blockSize.height = state.blockSize.heightStart * event.target.getAttribute('data-size');
-      global.console.log(state);
     }
   });
 };

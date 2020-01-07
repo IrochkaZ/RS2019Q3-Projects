@@ -6,8 +6,8 @@ const state = {
     stroke: false,
   },
   colors: {
-    current: '#ff0000',
-    prev: '',
+    current: '#7922CC',
+    prev: '#ffd700',
   },
   canvasSize: {
     width: 0,

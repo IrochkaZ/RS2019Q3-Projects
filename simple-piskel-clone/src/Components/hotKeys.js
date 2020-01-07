@@ -36,7 +36,11 @@ const hotKeys = ({ tools }) => {
       toolbar.stroke = true;
       document.querySelector('li[data-tool="stroke"]').classList.add('active');
     }
+    if (code === 'KeyX') {
+      document.querySelector('.swap').click();
+    }
   };
+
   window.addEventListener('keydown', toolKeyPress);
 };
 
