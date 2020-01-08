@@ -9,15 +9,48 @@ module.exports = {
     const images = document.querySelectorAll('.item__img');
     const preview = document.querySelector('.preview');
     preview.innerHTML = '';
-    Object.values(images).forEach((frame, index) => {
+    Object.values(images).forEach((frame) => {
       const element = frame.cloneNode(true);
       element.classList.remove('item__img');
       element.classList.add('preview__item');
-      if (index === 0) {
-        element.classList.add('active');
-      }
       preview.append(element);
     });
+  },
+
+  framesSyncToCanvas: (canvasItem, ctxItem) => {
+    const activeItem = document.querySelector('.item.active');
+    ctxItem.clearRect(0, 0, canvasItem.width, canvasItem.height);
+    const img = new Image();
+    const imageFrame = activeItem.firstElementChild.currentSrc;
+    img.src = imageFrame;
+    img.onload = () => {
+      ctxItem.drawImage(img, 0, 0);
+    };
+  },
+
+  player: (st) => {
+    const state = st;
+    const fps = document.querySelector('.preview__input').value;
+    const framesCount = document.querySelector('.preview').childElementCount;
+    if (framesCount > 1) {
+      let frm = 0;
+      state.animation = setInterval(() => {
+        if (frm === framesCount) {
+          frm = 0;
+        }
+
+        if (frm === 0) {
+          document.querySelector('.preview').children[framesCount - 1].style.display = 'none';
+          document.querySelector('.preview').children[frm].style.display = '';
+        }
+
+        if (frm >= 1) {
+          document.querySelector('.preview').children[frm - 1].style.display = 'none';
+          document.querySelector('.preview').children[frm].style.display = '';
+        }
+        frm += 1;
+      }, 1000 / parseInt(fps, 10));
+    }
   },
 
 };

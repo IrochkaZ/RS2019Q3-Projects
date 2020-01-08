@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable radix */
-
+import { framesSyncToCanvas } from './utils';
 import detete from '../assets/img/delete.png';
 import move from '../assets/img/drag.png';
 import duplicate from '../assets/img/duplicate.png';
@@ -9,10 +9,10 @@ import blankImg from '../assets/img/blank-bg.png';
 document.querySelector('.item__delete').style.backgroundImage = `url(${detete})`;
 document.querySelector('.item__drag').style.backgroundImage = `url(${move})`;
 document.querySelector('.item__duplicate').style.backgroundImage = `url(${duplicate})`;
-const frameWrap = document.querySelector('.item-wrap');
 
 
-const framesMove = (ctx, obj) => {
+const framesMove = (canvasItem, ctx, obj) => {
+  const frameWrap = document.querySelector('.item-wrap');
   const { width, height } = obj.canvasSize;
   const addButtonFrame = document.querySelector('.add');
 
@@ -57,15 +57,16 @@ const framesMove = (ctx, obj) => {
 
   const duplicateFrame = (event) => {
     if (event.target.classList.contains('item__duplicate')) {
+      const activeFrame = document.querySelector('.item.active');
       const duplicateNode = event.target.parentNode.cloneNode(true);
       frameWrap.insertBefore(duplicateNode, event.target.parentNode);
-      document.querySelector('.item.active').classList.remove('active');
+      activeFrame.classList.remove('active');
       frameWrap.lastElementChild.classList.add('active');
       changeItemNumber();
     }
   };
 
-  document.querySelector('.item-wrap').addEventListener('click', (event) => {
+  frameWrap.addEventListener('click', (event) => {
     if (event.target.classList.contains('item__img')) {
       document.querySelector('.item.active').classList.remove('active');
       event.target.parentNode.classList.add('active');
@@ -78,23 +79,26 @@ const framesMove = (ctx, obj) => {
     if (event.target.classList.contains('item__delete')) {
       deleteFrame(event);
     }
+    if (event.target.parentNode.classList.contains('active')) {
+      framesSyncToCanvas(canvasItem, ctx);
+    }
   });
 
 
-  document.querySelector('.item-wrap').addEventListener('mousedown', (event) => {
+  frameWrap.addEventListener('mousedown', (event) => {
     if (event.target.classList.contains('item__drag')) {
       isDrag = true;
       startY = event.clientY;
     }
   });
 
-  document.querySelector('.item-wrap').addEventListener('mousemove', (event) => {
+  frameWrap.addEventListener('mousemove', (event) => {
     if (event.target.classList.contains('item__drag') && isDrag === true) {
       endY = event.clientY;
     }
   });
 
-  document.querySelector('.item-wrap').addEventListener('mouseup', (event) => {
+  frameWrap.addEventListener('mouseup', (event) => {
     if (event.target.classList.contains('item__drag')) {
       if (isDrag === true) {
         global.console.log(startY, endY);
@@ -102,7 +106,7 @@ const framesMove = (ctx, obj) => {
       isDrag = false;
     }
   });
-  document.querySelector('.item-wrap').addEventListener('mousemleave', () => {
+  frameWrap.addEventListener('mousemleave', () => {
     isDrag = false;
   });
 };

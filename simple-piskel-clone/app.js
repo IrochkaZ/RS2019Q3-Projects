@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 
 import './src/css/style.css';
-import { canvasToFrame, framesSyncToPreview } from './src/Components/utils';
+import { canvasToFrame, framesSyncToPreview, player } from './src/Components/utils';
 import state from './src/Components/state';
 import getSizes from './src/Components/getSizes';
 import pencilDrawing from './src/Components/pencilDrawing';
@@ -12,9 +12,9 @@ import LocalStorageData from './src/Components/LocalStorageData';
 import pxSizeChange from './src/Components/pxSizeChange';
 import clearByEraser from './src/Components/clearByEraser';
 import hotKeys from './src/Components/hotKeys';
-// import lineDRawing from './src/Components/lineDrawing';
 import framesMove from './src/Components/framesMove';
 import previewAnimation from './src/Components/previewAnimation';
+import updateAll from './src/Components/updateAll';
 
 
 const canvas = document.getElementById('canvas');
@@ -34,48 +34,28 @@ const init = () => {
   LocalStorageData(canvas, ctx, state);
   pencilDrawing(canvas, ctx, state);
   getColorPicker(canvas, ctx, state);
-  chooseToolBar(canvas, state);
+  chooseToolBar(state);
   colorFill(ctx, canvas, state);
   pxSizeChange(state, ctx);
   clearByEraser(canvas, ctx);
-  framesMove(ctx, state);
+  framesMove(canvas, ctx, state);
   hotKeys(state);
   previewAnimation();
 };
 
-init();
+new Promise((resolve) => {
+  resolve(init());
+}).then(updateAll());
 
 canvas.addEventListener('mousedown', () => {
   canvasToFrame(canvas, ctx);
 });
 
-canvas.addEventListener('mousemove', () => {
-});
-
 canvas.addEventListener('mouseup', () => {
   canvasToFrame(canvas, ctx);
-  framesSyncToPreview();
+  framesSyncToPreview(state);
+  player(state);
 });
-
-
-// const download = (filename, text) => {
-//   const link = document.createElement('a');
-// eslint-disable-next-line max-len
-//   link.setAttribute('href', `data:text/plain;charset=utf-8,encodeURIComponent(text)${encodeURIComponent(text)}`);
-//   link.setAttribute('download', filename);
-//   if (document.createEvent) {
-//     const event = document.createEvent('MouseEvents');
-//     event.initEvent('click', true, true);
-//     link.dispatchEvent(event);
-//   } else {
-//     link.click();
-//   }
-// };
-
-// const getSave = document.querySelector('.save');
-// getSave.addEventListener('click', () => {
-//   download('piskel', localStorage.getItem('session'));
-// });
 
 // fullscreen
 const fullScreen = document.querySelector('.fullscreen');
@@ -93,3 +73,8 @@ linkApng.addEventListener('click', () => {
   linkApng.href = canvas.toDataURL();
   linkApng.download = 'mypainting.apng';
 }, false);
+
+
+window.addEventListener('unload', () => {
+  localStorage.setItem('state', JSON.stringify(state));
+});

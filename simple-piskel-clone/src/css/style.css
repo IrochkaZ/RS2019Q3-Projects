@@ -10,6 +10,26 @@ ul {
     list-style-type: none;
 }
 
+.tip::before {
+    content: attr(data-tooltip);
+    min-width: 60px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 20px;
+    background: #000;
+    border-radius: 7px;
+    left: calc(50% + 25px);
+}
+
+.tip::before, .tip::after {
+    position: absolute;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
 .tools__list,
 .color__change,
 .color__show {
@@ -369,18 +389,6 @@ ul {
     z-index: 5;
 }
 
-/* .canvas-style, .canvas-style.alt{
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    -ms-interpolation-mode: nearest-neighbor;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -o-pixelated;
-    image-rendering: pixelated;
-} */
-
 .active {
     border-radius: 2px;
     transition: .2s;
@@ -398,7 +406,6 @@ ul {
 }
 
 .preview__item{
-    display: none;
     width: 100%;
     height: 100%;
     position:absolute;

@@ -22,6 +22,9 @@ const state = {
   },
   penSize: 0,
   domToolActive: document.querySelector('.tools__list > .active'),
+  animation: '',
+  fps: 1,
+  frames: [],
 };
 
 export default state;

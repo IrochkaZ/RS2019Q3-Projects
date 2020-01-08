@@ -8,24 +8,11 @@ document.querySelector('.tools__paints-buckets').style.backgroundImage = `url(${
 document.querySelector('.tools__stroke').style.backgroundImage = `url(${stroke})`;
 document.querySelector('.tools__eraser').style.backgroundImage = `url(${eraser})`;
 
-// let canvasAltState = false;
-
-/* const triggerCanvas = (cnv, cnvAlt) => {
-  const cnvInst = cnv;
-  const cnvAltInst = cnvAlt;
-  if (canvasAltState === true) {
-    cnvInst.style.zIndex = 5;
-    cnvAltInst.style.zIndex = 6;
-  } else {
-    cnvInst.style.zIndex = 5;
-    cnvAltInst.style.zIndex = 6;
-  }
-}; */
-
-const chooseToolBar = (canvasItem, obj) => {
+const chooseToolBar = (obj) => {
   const buttons = document.querySelector('.tools__list');
   const toolbar = obj.tools;
   const toolChoose = ({ target }) => {
+    global.console.log(toolbar);
     const st = obj;
     const toolEvent = target;
     st.domToolActive.classList.remove('active');
@@ -37,7 +24,6 @@ const chooseToolBar = (canvasItem, obj) => {
       toolbar.eraser = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      // canvasAltState = false;
     }
 
     if (toolEvent.getAttribute('data-tool') === 'bucket') {
@@ -47,7 +33,6 @@ const chooseToolBar = (canvasItem, obj) => {
       toolbar.eraser = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      // canvasAltState = false;
     }
     if (toolEvent.getAttribute('data-tool') === 'eraser') {
       toolbar.pencil = false;
@@ -56,7 +41,6 @@ const chooseToolBar = (canvasItem, obj) => {
       toolbar.stroke = false;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      // canvasAltState = false;
     }
     if (toolEvent.getAttribute('data-tool') === 'stroke') {
       toolbar.pencil = false;
@@ -65,12 +49,10 @@ const chooseToolBar = (canvasItem, obj) => {
       toolbar.stroke = true;
       toolEvent.classList.add('active');
       st.domToolActive = toolEvent;
-      // canvasAltState = true;
     }
-    // triggerCanvas(canvasItem, canvasAltItem);
   };
 
-  buttons.addEventListener('click', toolChoose, false);
+  buttons.addEventListener('click', toolChoose);
 };
 
 
