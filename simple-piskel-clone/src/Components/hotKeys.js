@@ -39,6 +39,12 @@ const hotKeys = ({ tools }) => {
     if (code === 'KeyX') {
       document.querySelector('.swap').click();
     }
+    if (code === 'Delete') {
+      document.querySelector('.item__delete').click();
+    }
+    if (code === 'KeyA') {
+      document.querySelector('.add').click();
+    }
   };
 
   window.addEventListener('keydown', toolKeyPress);

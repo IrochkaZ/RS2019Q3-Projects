@@ -318,6 +318,10 @@ ul {
     justify-content: space-around;
 }
 
+.canvas__size-header {
+    font-size: 32px;
+}
+
 .size {
     margin-right: 25px;
     display: flex;
@@ -325,6 +329,12 @@ ul {
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.541327);
     height: fit-content;
+}
+
+.select_size {
+    cursor: pointer;
+    font-size: 20px;
+    border: 7px solid gold;
 }
 
 .canvas{
@@ -436,6 +446,7 @@ ul {
 
 .canvas__size option{
     cursor: pointer;
+    background-color: #f0ecd7;
 }
 
 .gif, .apng, .fullscreen, .save{

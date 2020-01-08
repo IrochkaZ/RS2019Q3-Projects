@@ -66,7 +66,6 @@ const framesMove = (ctx, obj) => {
   };
 
   document.querySelector('.item-wrap').addEventListener('click', (event) => {
-    global.console.log(event.target);
     if (event.target.classList.contains('item__img')) {
       document.querySelector('.item.active').classList.remove('active');
       event.target.parentNode.classList.add('active');
