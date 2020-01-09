@@ -11,7 +11,7 @@ const colorFill = (ctxItem, canvasItem, obj) => {
     }
   };
 
-  canvasItem.addEventListener('click', fillRect);
+  canvasItem.addEventListener('mouseup', fillRect);
 };
 
 export default colorFill;

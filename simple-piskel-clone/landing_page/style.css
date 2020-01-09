@@ -83,7 +83,7 @@ body {
   color: #fff;
 }
 
-.main__screen-subheader {
+.main__screen-information {
   padding-top: 20px;
   font-size: 20px;
   color: #c5c5c5;
@@ -163,7 +163,7 @@ body {
 }
 
 
-.advantages-section {
+.favor-section{
   padding: 50px 0;
   background-color: #181818;
   display: flex;
@@ -195,21 +195,21 @@ body {
   flex: 0.2;
 }
 
-.advantage-name {
+.favor-name {
   margin-top: 13px;
   font-size: 20px;
   font-weight: 700;
   color: #fff;
 }
 
-.advantage-description {
+.favor-description {
   margin-top: 10px;
   max-width: 80%;
   font-size: 14px;
   color: #c2c2c2;
 }
 
-.advantage-image {
+.favor-image {
   margin: 9px 15px 9px 0;
   border: 2px solid;
   border-radius: 4px;

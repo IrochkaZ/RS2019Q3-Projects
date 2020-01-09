@@ -53,4 +53,12 @@ module.exports = {
     }
   },
 
+  clearCanvas: (ctxItem, canvasItem) => {
+    const button = document.querySelector('.clear');
+    button.addEventListener('click', () => {
+      ctxItem.clearRect(0, 0, canvasItem.width, canvasItem.height);
+      this.canvasToFrame(canvasItem, ctxItem);
+    });
+  },
+
 };

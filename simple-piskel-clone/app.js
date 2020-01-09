@@ -1,20 +1,22 @@
 /* eslint-disable no-plusplus */
 
 import './src/css/style.css';
-import { canvasToFrame, framesSyncToPreview, player } from './src/Components/utils';
-import state from './src/Components/state';
-import getSizes from './src/Components/getSizes';
-import pencilDrawing from './src/Components/pencilDrawing';
-import getColorPicker from './src/Components/getColorPicker';
-import chooseToolBar from './src/Components/chooseToolBar';
-import colorFill from './src/Components/colorFill';
-import LocalStorageData from './src/Components/LocalStorageData';
-import pxSizeChange from './src/Components/pxSizeChange';
-import clearByEraser from './src/Components/clearByEraser';
-import hotKeys from './src/Components/hotKeys';
-import framesMove from './src/Components/framesMove';
-import previewAnimation from './src/Components/previewAnimation';
-import updateAll from './src/Components/updateAll';
+import {
+  canvasToFrame, framesSyncToPreview, player, clearCanvas,
+} from './src/сomponents/utils';
+import state from './src/сomponents/state';
+import getSizes from './src/сomponents/getSizes';
+import pencilDrawing from './src/сomponents/pencilDrawing';
+import getColorPicker from './src/сomponents/getColorPicker';
+import chooseToolBar from './src/сomponents/chooseToolBar';
+import colorFill from './src/сomponents/colorFill';
+import LocalStorageData from './src/сomponents/LocalStorageData';
+import pxSizeChange from './src/сomponents/pxSizeChange';
+import clearByEraser from './src/сomponents/clearByEraser';
+import hotKeys from './src/сomponents/hotKeys';
+import framesMove from './src/сomponents/framesMove';
+import previewAnimation from './src/сomponents/previewAnimation';
+import updateAll from './src/сomponents/updateAll';
 
 
 const canvas = document.getElementById('canvas');
@@ -41,6 +43,7 @@ const init = () => {
   framesMove(canvas, ctx, state);
   hotKeys(state);
   previewAnimation();
+  clearCanvas(ctx, canvas);
 };
 
 new Promise((resolve) => {
@@ -78,3 +81,10 @@ linkApng.addEventListener('click', () => {
 window.addEventListener('unload', () => {
   localStorage.setItem('state', JSON.stringify(state));
 });
+
+// COORDINATES
+canvas.onmousemove = (event) => {
+  const x = event.offsetX;
+  const y = event.offsetY;
+  document.querySelector('.cursor-coordinates').innerHTML = `x: ${x} y: ${y}`;
+};

@@ -5,7 +5,6 @@ const previewAnimation = () => {
   previewRange.addEventListener('input', (event) => {
     document.querySelector('#fps-number').textContent = event.target.value;
     state.fps = event.target.value;
-    global.console.log(state.fps);
   });
 };
 
