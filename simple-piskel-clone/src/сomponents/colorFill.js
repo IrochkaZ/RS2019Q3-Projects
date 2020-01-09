@@ -1,6 +1,7 @@
-const colorFill = (ctxItem, canvasItem, obj) => {
+import state from './state';
+
+const colorFill = (ctxItem, canvasItem) => {
   const context = ctxItem;
-  const state = obj;
   const fillRect = () => {
     const { bucket } = state.tools;
     if (bucket) {

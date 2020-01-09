@@ -1,4 +1,3 @@
-// import state from './state';
 import change from '../assets/img/change.png';
 import state from './state';
 
@@ -6,7 +5,7 @@ document.querySelector('.swap').style.backgroundImage = `url(${change})`;
 
 const getColorPicker = () => {
   const colorContainer = document.querySelector('.color');
-  const colorInput = document.querySelector('input[type="color"]');
+  const colorInputCurrent = document.querySelector('.current-circle');
   const swapColor = document.querySelector('.swap');
   const currentColor = document.querySelector('.current-circle');
   const prevColor = document.querySelector('.prev-circle');
@@ -21,7 +20,6 @@ const getColorPicker = () => {
     currentColor.style.value = colorState.current;
     prevColor.style.value = colorState.prev;
   };
-
   const colorChangeFromColorBar = ({ target }) => {
     if (target.classList.contains('current-circle') || target.classList.contains('prev-circle')) {
       changeColor();
@@ -39,7 +37,7 @@ const getColorPicker = () => {
     changeColor(target.value);
   };
 
-  colorInput.addEventListener('change', changeColorInput);
+  colorInputCurrent.addEventListener('change', changeColorInput);
   colorContainer.addEventListener('click', colorChangeFromColorBar);
 };
 

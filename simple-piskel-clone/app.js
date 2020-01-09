@@ -43,6 +43,8 @@ const init = () => {
   framesMove(canvas, ctx, state);
   hotKeys(state);
   previewAnimation(player);
+  canvasToFrame(canvas, ctx);
+  framesSyncToPreview();
 };
 
 new Promise((resolve) => {
