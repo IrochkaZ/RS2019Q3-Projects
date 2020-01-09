@@ -33,7 +33,7 @@ Max - +80
 -  Paint all pixels of the same color +5  **[DONE]**
 -  Stroke (to draw straight lines) +5
 
-#####Unit tests
+### Unit tests
 Setup Jest + cover couple functions with at least 2 tests (utilities / pure functions for example) +15
 
 ##### Normal scope
@@ -60,7 +60,7 @@ Max - +180
  - write 20 unit tests for utils functions and ui components +10
 
 
-#####Extra (additional) scope
+##### Extra (additional) scope
 Max - +160
 
 -  Login with one of the oAuth providers - Google / Facebook / VK / Twitter (+20)
@@ -73,7 +73,7 @@ Max - +160
       -  it needs to measure number of covered lines for all js app files in the project
  -  Achieve at least 40% coverage (for utilitiess / pure functions) +10
  
- ####Impossible scope
+ #### Impossible scope
 Max - +30
 
 - Unit tests
