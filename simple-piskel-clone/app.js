@@ -2,7 +2,7 @@
 
 import './src/css/style.css';
 import {
-  canvasToFrame, framesSyncToPreview, player, clearCanvas,
+  canvasToFrame, framesSyncToPreview, player,
 } from './src/сomponents/utils';
 import state from './src/сomponents/state';
 import getSizes from './src/сomponents/getSizes';
@@ -42,8 +42,7 @@ const init = () => {
   clearByEraser(canvas, ctx);
   framesMove(canvas, ctx, state);
   hotKeys(state);
-  previewAnimation();
-  clearCanvas(ctx, canvas);
+  previewAnimation(player);
 };
 
 new Promise((resolve) => {
@@ -57,7 +56,8 @@ canvas.addEventListener('mousedown', () => {
 canvas.addEventListener('mouseup', () => {
   canvasToFrame(canvas, ctx);
   framesSyncToPreview(state);
-  player(state);
+  window.clearInterval(state.animation);
+  state.animation = player();
 });
 
 // fullscreen

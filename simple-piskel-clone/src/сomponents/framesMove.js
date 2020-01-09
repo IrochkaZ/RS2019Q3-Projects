@@ -16,10 +16,6 @@ const framesMove = (canvasItem, ctx, obj) => {
   const { width, height } = obj.canvasSize;
   const addButtonFrame = document.querySelector('.add');
 
-  let startY = '';
-  let endY = '';
-  let isDrag = false;
-
   const changeItemNumber = () => {
     const ulItems = document.getElementsByClassName('item__number');
     Object.values(ulItems).forEach((el, index) => {
@@ -82,32 +78,6 @@ const framesMove = (canvasItem, ctx, obj) => {
     if (event.target.parentNode.classList.contains('active')) {
       framesSyncToCanvas(canvasItem, ctx);
     }
-  });
-
-
-  frameWrap.addEventListener('mousedown', (event) => {
-    if (event.target.classList.contains('item__drag')) {
-      isDrag = true;
-      startY = event.clientY;
-    }
-  });
-
-  frameWrap.addEventListener('mousemove', (event) => {
-    if (event.target.classList.contains('item__drag') && isDrag === true) {
-      endY = event.clientY;
-    }
-  });
-
-  frameWrap.addEventListener('mouseup', (event) => {
-    if (event.target.classList.contains('item__drag')) {
-      if (isDrag === true) {
-        global.console.log(startY, endY);
-      }
-      isDrag = false;
-    }
-  });
-  frameWrap.addEventListener('mousemleave', () => {
-    isDrag = false;
   });
 };
 

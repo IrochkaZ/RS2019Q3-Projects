@@ -6,6 +6,10 @@
     color: white;
 }
 
+
+body{
+    background-color: #2d2d2d;
+}
 ul {
     list-style-type: none;
 }
@@ -458,7 +462,7 @@ ul {
     background-color: #f0ecd7;
 }
 
-.gif, .apng, .fullscreen, .clear{
+.gif, .apng, .fullscreen{
     font-size: 14px;
     padding: 8px;
     border: 1px solid transparent;
@@ -475,14 +479,10 @@ ul {
     justify-content: space-between;
 }
 
-
-.save {
-    align-self: center;
+.buttons__downloasd-image {
+    margin-top: 25px;
     display: flex;
-    justify-content: center;
-    padding-left: 25px;
-    padding-right: 25px;
-    margin-top: 20px;
+    justify-content: space-between;
 }
 
 input[type=range] {

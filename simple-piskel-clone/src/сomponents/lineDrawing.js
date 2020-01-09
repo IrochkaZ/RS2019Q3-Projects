@@ -31,7 +31,6 @@ const lineDrawing = (canvasItem, ctxItem, canvasItemAlt, ctxItemAlt) => {
     if (tools.stroke === true) {
       isDrawing = false;
       tempImg.src = canvasItemAlt.toDataURL();
-      global.console.log(tempImg.src);
       ctxItem.drawImage(canvasItemAlt, 0, 0, canvasItem.width, canvasItem.height);
       ctxItemAlt.clearRect(0, 0, canvasItemAlt.width, canvasItemAlt.height);
     }

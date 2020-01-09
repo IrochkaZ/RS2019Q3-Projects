@@ -12,7 +12,6 @@ const chooseToolBar = (obj) => {
   const buttons = document.querySelector('.tools__list');
   const toolbar = obj.tools;
   const toolChoose = ({ target }) => {
-    global.console.log(toolbar);
     const st = obj;
     const toolEvent = target;
     st.domToolActive.classList.remove('active');

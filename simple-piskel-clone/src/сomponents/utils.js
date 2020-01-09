@@ -28,37 +28,32 @@ module.exports = {
     };
   },
 
-  player: (st) => {
-    const state = st;
-    const fps = document.querySelector('.preview__input').value;
-    const framesCount = document.querySelector('.preview').childElementCount;
+  player: () => {
+    const fpsRange = document.querySelector('.preview__input');
+    const preview = document.querySelector('.preview');
+    const fps = fpsRange.value;
+    const framesCount = preview.childElementCount;
+    let animation;
     if (framesCount > 1) {
       let frm = 0;
-      state.animation = setInterval(() => {
+      animation = setInterval(() => {
         if (frm === framesCount) {
           frm = 0;
         }
 
         if (frm === 0) {
-          document.querySelector('.preview').children[framesCount - 1].style.display = 'none';
-          document.querySelector('.preview').children[frm].style.display = '';
+          preview.children[framesCount - 1].style.display = 'none';
+          preview.children[frm].style.display = '';
         }
 
         if (frm >= 1) {
-          document.querySelector('.preview').children[frm - 1].style.display = 'none';
-          document.querySelector('.preview').children[frm].style.display = '';
+          preview.children[frm - 1].style.display = 'none';
+          preview.children[frm].style.display = '';
         }
         frm += 1;
       }, 1000 / parseInt(fps, 10));
     }
-  },
-
-  clearCanvas: (ctxItem, canvasItem) => {
-    const button = document.querySelector('.clear');
-    button.addEventListener('click', () => {
-      ctxItem.clearRect(0, 0, canvasItem.width, canvasItem.height);
-      this.canvasToFrame(canvasItem, ctxItem);
-    });
+    return animation;
   },
 
 };
