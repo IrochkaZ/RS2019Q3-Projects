@@ -1,7 +1,7 @@
 {
-  "name": "irochkaz",
+  "name": "Iryna Zaletko",
   "version": "1.0.0",
-  "description": "Private repository for @irochkaz",
+  "description": "Weather App",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",

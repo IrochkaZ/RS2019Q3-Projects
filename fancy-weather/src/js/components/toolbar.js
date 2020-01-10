@@ -12,7 +12,7 @@ export default class Toolbar {
       },
       {
         lang: 'RU',
-        cls: 'russ',
+        cls: 'rus',
       },
       {
         lang: 'BE',
@@ -32,21 +32,21 @@ export default class Toolbar {
 
   render() {
     // reload option append
-    const liReload = createEl('li', 'reload', null, this.toolContainer);
-    const reloadI = createEl('i', ['fa', 'fa-refresh'], null, liReload);
-    reloadI.setAttribute('aria-hidden', 'true');
+    const reload = createEl('li', 'reload', null, this.toolContainer);
+    const reloadIcon = createEl('i', ['fa', 'fa-refresh'], null, reload);
+    reloadIcon.setAttribute('aria-hidden', 'true');
 
     // language option append
     const liLang = createEl('li', 'language', null, this.toolContainer);
     const langSelect = createEl('select', 'language-select', null, liLang);
-    this.lang.forEach((lng) => {
-      createEl('option', lng.cls, lng.lang, langSelect);
+    this.lang.forEach(({ cls, lang }) => {
+      createEl('option', cls, lang, langSelect);
     });
     // temperature select
     const temperatureWrap = createEl('li', 'button__temperature-wrapper', null, this.toolContainer);
     const scaleTemp = createEl('ul', 'button-temperature', null, temperatureWrap);
-    this.tempa.forEach((tmp) => {
-      createEl('li', tmp.cls, tmp.tempa, scaleTemp);
+    this.tempa.forEach(({ cls, tempa }) => {
+      createEl('li', cls, tempa, scaleTemp);
     });
 
     // container search
@@ -56,11 +56,11 @@ export default class Toolbar {
   }
 
   events(el) {
+    const { style } = el;
     this.toolContainer.querySelector('.reload').addEventListener('click', () => {
-      const elem = el;
-      changeImageBackground(el).then(
+      changeImageBackground(style).then(
         (data) => {
-          elem.style.backgroundImage = `url(${data.src})`;
+          style.backgroundImage = `url(${data.src})`;
         },
       );
     });

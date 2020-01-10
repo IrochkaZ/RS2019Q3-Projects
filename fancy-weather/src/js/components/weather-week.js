@@ -3,18 +3,13 @@ import { createEl } from './functions';
 
 export default class WeatherWeek {
   constructor() {
-    this.state = {};
+    this.state = [];
     this.weatherWeekContainer = createEl('div', 'weather-three-day', null, null);
     this.dayFull = {
       en: ['Sunday', 'Monday', 'Tuesday', 'Wendsday', 'Thursday', 'Friday', 'Saturday'],
       ru: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
       be: ['Нядзеля', 'Панядзелак', 'Ауторак', 'Серада', 'Чацверг', 'Пятнiца', 'Субота'],
     };
-    this.data = [
-      { day: 'null', temp: 'null', icon: null },
-      { day: 'null', temp: 'null', icon: null },
-      { day: 'null', temp: 'null', icon: null },
-    ];
   }
 
   getLocaleDay(time) {
@@ -23,13 +18,13 @@ export default class WeatherWeek {
   }
 
   render() {
-    this.data.forEach((item) => {
+    this.data.forEach(({ day, temp, icon }) => {
       const weatherDayItem = createEl('div', '', null, this.weatherWeekContainer);
-      createEl('div', 'day-text', this.getLocaleDay(item.day), weatherDayItem);
+      createEl('div', 'day-text', this.getLocaleDay(day), weatherDayItem);
       const weatherDayInfo = createEl('div', 'weather-day__info', null, weatherDayItem);
-      createEl('div', 'show__temperature', `${item.temp}°`, weatherDayInfo);
+      createEl('div', 'show__temperature', `${temp}°`, weatherDayInfo);
       const imgWeather = createEl('img', 'weather-three-day__icon', null, weatherDayInfo);
-      imgWeather.src = `https://openweathermap.org/img/wn/${item.icon}@2x.png`;
+      imgWeather.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     });
     return this.weatherWeekContainer;
   }
@@ -41,5 +36,6 @@ export default class WeatherWeek {
     this.weatherWeekContainer.querySelectorAll('.weather-three-day__icon')[0].src = `https://openweathermap.org/img/wn/${this.state[0].icon}@2x.png`;
     this.weatherWeekContainer.querySelectorAll('.weather-three-day__icon')[1].src = `https://openweathermap.org/img/wn/${this.state[1].icon}@2x.png`;
     this.weatherWeekContainer.querySelectorAll('.weather-three-day__icon')[2].src = `https://openweathermap.org/img/wn/${this.state[2].icon}@2x.png`;
+    global.console.log(this.state);
   }
 }

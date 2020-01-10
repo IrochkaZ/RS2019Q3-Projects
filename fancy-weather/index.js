@@ -8,22 +8,17 @@ import {
 const wrap = new Wrapper();
 
 getLocation().then(
-  (dataLocation) => {
-    wrap.search.query = dataLocation.city;
-    let query;
-    if (dataLocation.city === '') {
-      query = 'Minsk';
-    } else {
-      query = dataLocation.city;
-    }
+  ({ city }) => {
+    wrap.search.query = city;
+    const query = (city) ? 'Minsk' : city;
     getWeather(query, 'city').then(
       (data) => {
         getWeatherWeek(data.id).then((dataWeek) => {
           wrap.weatherWeek.data = dataWeek;
           const wrapper = wrap.render();
           changeImageBackground(data.weather[0].description).then(
-            (dataImg) => {
-              wrapper.style.backgroundImage = `url(${dataImg.src})`;
+            ({ src }) => {
+              wrapper.style.backgroundImage = `url(${src})`;
             },
           );
           wrap.weatherMain.changeState = data;
@@ -38,8 +33,10 @@ getLocation().then(
 
 wrap.search.searchForm.addEventListener('click', (e) => {
   e.preventDefault();
-  if (e.target.classList.contains('submit')) {
-    if (wrap.search.searchForm[0].value !== '') {
+  const { target } = e;
+  if (target.classList.contains('submit')) {
+    const { searchForm } = wrap.search;
+    if (searchForm[0].value !== '') {
       getWeather(wrap.search.searchForm[0].value, 'city').then(
         (data) => {
           getWeatherWeek(data.id).then((dataWeek) => {
