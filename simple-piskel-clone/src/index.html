@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <title>Simple Piskel Clone App</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1  class = "heading"><a href="#"><img src="./assets/img/logo.png" alt="logo"></a></h1>
+            <div class="shape"><i class="fas fa-ellipsis-v"></i></div>
+        </header>
+        <main class="main">
+            <div class="instruments">
+                <div class="pen-size-container size-picker-container" title="Pen size from 1 to 4 pixels">
+                        <div class="pen-size-option size-picker-option selected" data-size="1"></div>
+                        <div class="pen-size-option size-picker-option" data-size="2"></div>
+                        <div class="pen-size-option size-picker-option" data-size="3"></div>
+                        <div class="pen-size-option size-picker-option" data-size="4"></div>
+                </div>
+                <div class="tools">
+                    <ul class="tools__list">
+                        <li class="tool tools__paints-buckets" data-tool='bucket' title="Paint bucket (B)" > </li>
+                        <li class="tool tools__pencil active" data-tool='pencil' title='Pencil (P)'>
+                        <li class="tool tools__eraser" data-tool='eraser' title="Eraser (E)"></li>
+                        <li class="tool tools__stroke" data-tool='stroke' title ="Stroke (S)">
+                        </li>
+                    </ul>
+                </div>
+                <div class="color">
+                    <ul class="color__change">
+                            <input  type="color" class="color__circle current-circle" title = "Primary color">
+                            <input type="color" disabled='disabled'  class="color__circle prev-circle" title = "Secondary color">
+                    </ul>
+                    <div class="swap" title="Swap (X)"></div>
+                </div>
+            </div>
+            <div class="frames">
+                <ul class="item-wrap">
+                <li class="item active">
+                    <img class="item__img" src='assets/img/blank-bg.png'>
+                    <div class="item__number" title="Toggle for preview">1</div>
+                    <div class="item__delete" title="Delete this frame (Del)">
+                    </div>
+                    <div class="item__drag" title="Move this frame">
+                    </div>
+                    <div class="item__duplicate" title="Duplicate this frame">
+                    </div>
+                </li>
+                </ul>
+                <div class="add" title = 'A'>
+                <div class="add__icon">+</div>
+                <p class="add__text">Add new frame</p>
+                </div>
+            </div>
+            <div class="canvas">
+                <canvas id="canvas" class="canvas-style" width="600" height="600" ></canvas>
+            </div>
+            <div class="preview-wrapper">
+                <div class="preview">
+                    <img class="preview__item active">
+                  </div>
+                  <div class="fps-change">
+                    <label class="preview__label" for="volume"><span id="fps-number">2</span> FPS</label>
+                    <input type="range" name="volume" class="preview__input" min="0" max="24" value="4">
+                  </div>
+                  <div class="canvas__size">
+                    <h3 class ="canvas__size-header">Canvas Size</h3>
+                    <select class="select_size">
+                        <option value="32X32">32X32</option>
+                        <option value="64X64">64X64</option>
+                        <option value="128X128">128X128</option>
+                    </select>
+                </div>
+                <button class="fullscreen btn">Fullscreen</button>
+                <div class="buttons__downloasd-image">
+                    <a class="gif">Download in .gif</a>
+                    <a class="apng">Download in .apng</a>
+                </div>
+            <div class="cursor-coordinates"></div>
+        </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+/* BASIC SETTINGS */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Roboto", "Open Sans";
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  background-color: #222222;
+}
+
+
+.header {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2d2d2d;
+}
+
+.header__logo {
+  padding-left: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.header__botton {
+  margin-right: 10px;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background-color: #ffd700;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333333;
+  transition: 0.3s background-color;
+}
+
+.header__botton:hover {
+  background-color: #fff;
+}
+
+.main__screen {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: #505050;
+  padding: 30px;
+
+}
+
+.main__screen-sidewrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main__screen-sidewrapper:first-child {
+  padding: 0 30px;
+}
+
+.main__screen-sidewrapper + .main__screen-sidewrapper {
+  flex: 1.4;
+}
+
+.main__screen-header {
+  font-size: 38px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.main__screen-information {
+  padding-top: 20px;
+  font-size: 20px;
+  color: #c5c5c5;
+}
+
+.main__screen-botton-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.main__screen-botton {
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background-color: #ffd700;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333333;
+  transition: 0.3s background-color;
+}
+
+.main__screen-botton:hover {
+  background-color: #fff;
+}
+
+
+.app-screen{
+  width: 80%;
+}
+
+
+.main__examples-wrapper {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main__examples-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main__examples-header {
+  margin: 0 5px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.main__examples-description {
+  margin: 10px 5px 0;
+  font-size: 14px;
+  color: #c2c2c2;
+}
+
+.main__examples {
+  display: flex;
+  justify-content: space-around;
+}
+
+.main__examples img {
+  image-rendering: pixelated;
+}
+
+.example {
+  margin: 9px 5px;
+  border: 3px solid;
+  border-radius: 3px;
+  border-color: #888888;
+}
+
+.example:hover {
+  border-color: #cccccc;
+}
+
+
+.favor-section{
+  padding: 50px 0;
+  background-color: #181818;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.item-column {
+  height: 140px;
+  color: #fff;
+}
+
+.row {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 350px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.small {
+  flex: 0.2;
+}
+
+.favor-name {
+  margin-top: 13px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.favor-description {
+  margin-top: 10px;
+  max-width: 80%;
+  font-size: 14px;
+  color: #c2c2c2;
+}
+
+.favor-image {
+  margin: 9px 15px 9px 0;
+  border: 2px solid;
+  border-radius: 4px;
+  border-color: rgb(168, 168, 168);
+}
+
+.background-pattern {
+  background:url(https://www.piskelapp.com/static/resources/animated-preview-checker-background.png);
+}
+
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.author-wrapper {
+  align-items: center;
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.author-image-wrapper {
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+
+.author-image {
+  border: 2px #fff solid;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.author-info + .author-info {
+  margin-top: 10px;
+}
+
+.author-info a {
+  margin-right: 10px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.author-info a:hover {
+  color: #a0a0a0;
+}
+
+.img__tools{
+  height: 225px;
+
+}
