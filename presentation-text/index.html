@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>React.js</title>
+    <link rel="icon" type="image/png" href="./img/icon.png">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body style="height: 100%">
+
+    <div class="slides">
+        <!-- sliders1 -->
+        <section>
+            <h1 class="header">React.js</h1>
+            <p class="introduction ">Hello everyone. My name is Irina. In this presentation, we’ll look at a cool Java Script library called React. We’ll get acquainted with its basics, find out what are the pros and cons. Here goes!</p>
+            <p>
+                <small>Links: <a href="https://reactjs.org/">https://reactjs.org/</a> and <a href="https://github.com/facebook/react">https://github.com/facebook/react</a></small>
+            </p>
+        </section>
+        <!-- slides2 -->
+        <section>
+            <section>
+                <h3>What is React.js?</h3>
+                <ul>
+                    <li class="fragment fade-up ">React is a JavaScript library for building user interfaces.</li>
+                    <li class="fragment fade-right ">Renders your UI and responds to events</li>
+                    <li class="fragment fade-left ">It also uses the concept called Virtual DOM, creates an in-memory data structure cache, enumerates the resulting differences, and then updates the browser’s displayed DOM efficiently.</li>
+                    <li class="fragment fade-down "> One of the unique features of React.js is not only it can perform on the client side, but it can also be rendered on the server side, and they can work together interoperably</li>
+                </ul>
+            </section>
+        </section>
+        <!-- slides3 -->
+        <section>
+            <section>
+                <h2 style="color: #4068A1; margin-bottom: 15px; ">Why was React developed?</h2>
+            </section>
+            <section>
+                <ul>
+                    <li class="fragment fade-up ">Complexity of two-way data binding.</li>
+                    <li class="fragment fade-right ">Bad UX from using "cascading updates " of DOM tree</li>
+                    <li class="fragment fade-left ">A lot of data on a page changing over time</li>
+                    <li class="fragment fade-down ">Complexity of Facebook's UI architecture</li>
+                </ul>
+            </section>
+        </section>
+        <!-- slides4 -->
+        <section>
+            <p><em>react is maintained by</em></p>
+            <a href="https://www.facebook.com/ " target="_blank "><img src="./img/facebook.png " alt="facebook "></a>
+            <p>GitHub stats</p>
+            <a href="https://github.com/facebook/react " target="_blank "><img src="./img/react_git.png " alt="react_github "></a>
+            <a href="https://github.com/vuejs/vue " target="_blank "><img src="./img/vue_git.png " alt="vue_git "></a>
+        </section>
+        <!-- slides5 -->
+        <section>
+            <h2>Websites using <span>React</span></h2>
+            <p>Most Popular Websites world wide made with react</p>
+            <img width="auto " height="400 " src="./img/who-use.jpg " alt="who_use ">
+        </section>
+        <!-- slides6 -->
+        <section data-background-transition="zoom ">
+            <h2>Why should You use React?</h2>
+            <ul>
+                <li class="fragment fade-up ">Easy to read and understand views</li>
+                <li class="fragment fade-right ">Concept of components is the <span style="font-style:italic ">future</span> of web development</li>
+                <li class="fragment fade-left ">If your page uses a lot of fast updating data or real time data - React is the way to go</li>
+                <li class="fragment fade-down ">Once you and your team is over the React's learning curve, developing your app will become a lot faster</li>
+            </ul>
+        </section>
+        <!-- slides7 -->
+        <section>
+            <section>
+                <h2>React: <span style="color: darkgreen ">the good</span></h2>
+            </section>
+            <section>
+                <h4 style="color: darksalmon; ">Easy to understand what a component will render</h4>
+                <ul>
+                    <li>Declarative code → predictable code</li>
+                    <li>You don't really need to study JS in the view file in order to understand what the file does</li>
+                </ul>
+            </section>
+            <section>
+                <h4 style="color: darksalmon; ">Easy to mix HTML and JS</h4>
+                <ul>
+                    <li>You do it already with template libraries (e.g. Handlebars, Mustache, Underscore etc.)</li>
+                </ul>
+            </section>
+            <section>
+                <h4 style="color: darksalmon; ">No complex two-way data flow</h4>
+                <ul>
+                    <li>Uses simple one-way reactive data flow</li>
+                    <li>Easier to understand than two-way binding</li>
+                    <li>Uses less code</li>
+                </ul>
+            </section>
+            <section>
+                <h4 style="color: darksalmon; ">React is fast!</h4>
+                <ul>
+                    <li>Real DOM is slow</li>
+                    <li>JavaScript is fast</li>
+                    <li>Using virtual DOM objects enables fast batch updates to real DOM, with great productivity gains over frequent cascading updates of DOM tree</li>
+                </ul>
+            </section>
+        </section>
+        <!-- sliders -->
+        <section>
+            <section>
+                <h2>React: <span style="color: red "> the "bad "</span></h2>
+                <p>Don't forget that React is <span style="font-weight: 1000; ">mostly the view.</span></p>
+            </section>
+            <section>
+                <p style="color: darksalmon; ">You DON'T GET any of the following:</p>
+                <ul>
+                    <li>An event system (other than vanilla DOM events)</li>
+                    <li>Any AJAX capabilities whatsoever</li>
+                    <li>Any form of a data layer</li>
+                    <li>Promises</li>
+                    <li>Any application framework</li>
+                </ul>
+            </section>
+            <section>
+                <h4 style="color: darksalmon; ">Building JSX requires some extra work</h4>
+                <ul>
+                    <li>But most of the work is already done for you by react-tools</li>
+                </ul>
+            </section>
+            <section>
+                <h4 style="color: darksalmon; ">No support for older browsers</h4>
+                <ul>
+                    <li>React won't work with IE8</li>
+                    <li>There some polyfills / shims that help</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Try React</h2>
+            </section>
+            <section>
+                <h3>Online Playgrounds:</h3>
+                <p><a href="https://codepen.io/pen?&editable=true&editors=0010 "><span>CodePen</span></a>,
+                    <a href="https://codesandbox.io/s/new "><span>CodeSandbox</span></a></p>
+                <h3>Use Webpack or Create React App: </h3>
+                <p><a href="https://www.valentinog.com/blog/babel/ "><span>Webpack 4</span></a>,
+                    <a href="https://github.com/facebook/create-react-app "><span>Create React App</span></a></p>
+            </section>
+        </section>
+        <!-- sliders -->
+        <section>
+            <section>
+                <h2>Fundamentals</h2>
+                <p>Most important terms in React</p>
+            </section>
+            <section>
+                <h2>Component</h2>
+                <p style="font-size: 30px; ">Components are self-contained reusable building blocks of web application. React components are basically just idempotent functions (same input produces same output). They describe your UI at any point in time, just like a server-rendered
+                    app.
+                </p>
+                <img src="./img/component.png " alt="component ">
+            </section>
+            <section>
+                <h3>Component</h3>
+                <p>The simplest way to define a component is to write a JavaScript function:</p>
+                <pre><code class="javascript " data-trim contenteditable style="font-size: 16px; ">
+function Welcome(props) {
+	return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;
+}
+										
+<i>// or even simply, using the ES6</i>
+										
+const Welcome = (props) => &lt;h1&gt; Hello, {props.name} &lt;/h1&gt;
+								</code></pre>
+                <p>You can also use an ES6 class to define a component:</p>
+                <pre><code class="javascript " data-trim contenteditable style="font-size: 16px; " >
+class Welcome extends React.Component {
+		render() {
+return &lt;h1&gt;Hello,{this.props.name}&lt;/h1&gt;
+	}
+}
+								</code></pre>
+            </section>
+            <section>
+                <h3>Props</h3>
+                <ul>
+                    <li>Passed down to component from parent component and represents data for the component</li>
+                    <li>accessed via <span style="font-weight: 900; ">this.props<span></li>
+                    </ul>
+                    <pre><code  class="javascript " data-trim contenteditable style="font-size: 18px; ">
+render: function() {
+    const someProp = 'bar';
+
+<i>console.log('component render()', this.props);</i>
+
+    return &lt;div&gt;
+    &lt;AnotherComponent foo={someProp} model={this.props.model} /&gt
+        &lt;/div&gt; ;
+}
+</code>
+	</pre>
+                </section>
+                <section>
+                    <h3>State</h3>
+                    <ul>
+                        <li>Represents internal state of the component</li>
+                        <li>Accessed via <span style="font-weight: 1000; ">this.state</span></li>
+                    <li>When a component's state data changes, the rendered markup will be updated by re-invoking <span style="font-weight: 1000; ">render() method</span></li>
+                    <pre><code class="javascript " data-trim contenteditable style="font-size: 18px; ">
+render: function() {
+    return &lt;h3&gt;Click count:
+    &lt;span className='label label-default'&gt;{this.state.clicks}&lt;/span&gt;
+        &lt;/h3&gt;;
+}
+                        </code></pre>
+                </ul>
+            </section>
+            <section>
+                <h3>JSX</h3>
+                <ul style="font-size: 26px; ">
+                    <li>Arguably, one of the coolest things in React</li>
+                    <li>Easier to read and understand large DOM trees</li>
+                    <li>Translates to plain JavaScript using react-tools</li>
+                    <li>XML-like syntax for generating component's HTML</li>
+                </ul>
+                <pre><code  class="javascript " data-trim contenteditable style="font-size: 16px; ">
+    <i>/** @jsx React.DOM *</i>
+        render: function () {
+            return <div&gt;
+                &lt;h2&gt;
+                &lt;strong&gt;Example 4:</strong>  React App
+                 &lt;/h2&gt;
+                    lt;/div&gt;;
+    }
+
+    <i>/** regular DOM */</i>
+        render: function () {
+            return React.DOM.div(null,
+                React.DOM.h2(null, React.DOM.strong(null, "Example 4: "), " React App ")
+                );
+    }
+                    </code></pre>
+            </section>
+            <section>
+                <h3>Virtual DOM</h3>
+                <ul>
+                    <li>The virtual DOM is used for efficient re-rendering of the DOM</li>
+                    <li>React aims to re-render the virtual tree only when the state changes</li>
+                    <li>Uses 2 virtual trees (new and previous) to find differences and batch update real DOM</li>
+                    <li>Observes data changes (setState) and does dirty-checking to know when to re-render component</li>
+                    <li>Whenever possible, does not update entire component in real DOM - only computes a patch operation that updates part of the DOM</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Lifecycle react application</h3>
+                <img src="./img/lifecycle_methods.jpg " alt="lifecycle_methods " width="1000 " height="500 ">
+                <p style="font-size: 25px; ">Links: <a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ " target="_blank ">More information</a></p>
+            </section>
+            <section>
+                <p>ReactJS provides a bunch of methods that are executed during different stages of components life. Those are called lifecycle methods. Lifecycle methods are only available for class based components. For functional components react provides
+                    hooks. Let’s go through this diagram.</p>
+
+                <p class="paragraph-lifecicle">Horizontally it is split into three main stages:</p>
+                <ul class="list-lifecicle">
+                    <li>Mounting</li>
+                    <li>Updating</li>
+                    <li>Unmounting</li>
+                </ul>
+
+                <article class="article-lifecicle">
+                    <h3>Mounting</h3>
+                    <p>This is first stage each component goes through. During this stage component gets created and then mounted to the DOM. First method that is being executed during this stage is constructor.</p>
+                </article>
+                <article class="article-lifecicle">
+                    <h3>Updating</h3>
+                    <p>Next big stage is is updating. Methods of this stage get called every time props or state of the component get changed or forceUpdate() gets called.</p>
+                </article>
+                <article class="article-lifecicle">
+                    <h3>Unmounting</h3>
+                    <p>Last stage is unmounting and it has only one method - componentWillUnmount.This method is being called right before the component is being removed from the DOM.It is a good place to perfom the cleanup and remove your event listeners
+                        or timers that you might have added in componentDidMount.</p>
+                </article>
+            </section>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>If we look at the whole discussion holistically, React’s advantages far exceed its disadvantages making it a robust and adaptable programming library. Companies realize React’s ability to remain relevant in the market and that is why they
+                are investing wholeheartedly in this technology.</p>
+        </section>
+        <section>
+            <p>Thanks for attention</p>
+        </section>
+    </div>
+</body>
+
+</html>
